@@ -39,9 +39,9 @@
 
 🌟 Скриншоты
 
-    📷 [Скриншот 1](https://github.com/VitalyMatyko/typing-trainer/blob/main/public/typint_trainer_1.png)
-    📷 [Скриншот 2](https://github.com/VitalyMatyko/typing-trainer/blob/main/public/typint_trainer_2.png)
-    📷 [Скриншот 3](public/typint_trainer_3.png)
+📷 [Скриншот1](https://github.com/VitalyMatyko/typing-trainer/blob/main/public/typint_trainer_1.png)
+📷 [Скриншот2](https://github.com/VitalyMatyko/typing-trainer/blob/main/public/typint_trainer_2.png)
+📷 [Скриншот3](https://github.com/VitalyMatyko/typing-trainer/blob/main/public/typint_trainer_3.png)
 
 📌 Будущие обновления
 
@@ -53,5 +53,5 @@
 
     ⚠️  Этот проект распространяется под лицензией MIT. Свободно используй и модифицируй! 🎉
 
-👨‍💻 Автор: [VitalyMatyko]<br>
+👨‍💻 Автор: VitalyMatyko <br>
 📮 Контакты: [GitHub](https://github.com/VitalyMatyko)
