@@ -6,14 +6,6 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ closeWindow }) => {
 	return (
 		<div className="profile_page">
 			<h1>Profile Statistic</h1>
-
-			<div className="logo">
-				<div className="v">
-					<span className="name">Vitaly Matyko </span>
-					<span > Frontend & Backend </span>
-					<span >  Developer</span>
-				</div>
-			</div>
 			<div onClick={closeWindow} className="profile_manage">
 				<span className="close_window">
 					<svg
