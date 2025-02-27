@@ -39,9 +39,9 @@
 
 🌟 Скриншоты
 
-    📷 ![Скриншот 1](https://github.com/VitalyMatyko/typing-trainer/blob/main/public/typing_trainer_1.png?raw=true)
-    📷 ![Скриншот 2](https://github.com/VitalyMatyko/typing-trainer/blob/main/public/typing_trainer_2.png?raw=true)
-    📷 ![Скриншот 3](https://github.com/VitalyMatyko/typing-trainer/blob/main/public/typing_trainer_3.png?raw=true)
+    📷 ![Скриншот 1](https://github.com/VitalyMatyko/typing-trainer/blob/main/public/typint_trainer_1.png)
+    📷 ![Скриншот 2](https://github.com/VitalyMatyko/typing-trainer/blob/main/public/typint_trainer_2.png)
+    📷 ![Скриншот 3](public/typint_trainer_3.png)
 
 📌 Будущие обновления
 
