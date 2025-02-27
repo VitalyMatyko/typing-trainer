@@ -1,0 +1,46 @@
+import { keyMappings } from "./keyMappings/KeyMapping.RU";
+import { KeyboardProps } from "../../../types/types";
+
+
+const RussianKeyboard: React.FC<KeyboardProps> = ({ keyData }) => {
+
+	return (
+		<div className="keyboard">
+			<div className="keyboard_border">
+				{keyMappings.map((row, index) => (
+					<div key={index} className="key-row">
+						{row.map(({ key, leftShift, rightShift, shiftKey, color, wide, shift, back_caps, tab, enter, backspace, capsLock, space, touchFinger, }, keyIndex) => (
+							<div
+								style={{ backgroundColor: color }}
+								key={`${key}-${keyIndex}`}
+								className={`key
+									${wide ? "wide" : ''}
+									${shift ? "shift" : ''}
+									${back_caps ? "back_caps" : ''}
+									${tab ? "tab" : ''}
+									${enter ? "enter" : ''}
+									${backspace ? "backspace" : ''}
+									${capsLock ? "capslock" : ''}
+									${space ? "space" : ''}
+									${keyData.pressedKey.toUpperCase() === key ? 'active_keys' : ''}
+									${keyData.pressedKey === key ? 'active_keys' : ''}
+									${leftShift && keyData.shiftLocation.left ? 'active_keys' : ''}
+									${rightShift && keyData.shiftLocation.right ? 'active_keys' : ''}
+									`}
+							>
+								{shiftKey && <span className="shift-key">{shiftKey}</span>}
+								{touchFinger && (
+									<span className="touch-finger">{touchFinger}</span>
+								)}
+								<span className={`main-key`}>{key}</span>
+							</div>
+						)
+						)}
+					</div>
+				))}
+			</div>
+		</div>
+	);
+};
+
+export default RussianKeyboard;

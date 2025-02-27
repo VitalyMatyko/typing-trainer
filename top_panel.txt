@@ -1,0 +1,136 @@
+import React from 'react';
+import './Header.scss';
+import { ReactComponent as PracticeIcon } from '../../assets/icons/practice.svg';
+import { ReactComponent as ProfileIcon } from '../../assets/icons/profile.svg';
+import { ReactComponent as SpeedTestIcon } from '../../assets/icons/speed-test.svg';
+import { ReactComponent as SettingsIcon } from '../../assets/icons/settings.svg';
+import { ReactComponent as UserIcon } from '../../assets/icons/user.svg';
+import { ReactComponent as GuestIcon } from '../../assets/icons/guest.svg';
+
+const Header = ({ isAuthenticated }) => {
+  return (
+    <header className="header">
+      <div className="nav-item">
+        <PracticeIcon className="icon" />
+        <span>Практика</span>
+      </div>
+      <div className="nav-item">
+        <ProfileIcon className="icon" />
+        <span>Профиль</span>
+      </div>
+      <div className="nav-item">
+        <SpeedTestIcon className="icon" />
+        <span>Тест скорости</span>
+      </div>
+      <div className="nav-item">
+        <SettingsIcon className="icon" />
+        <span>Настройки</span>
+      </div>
+      <div className="nav-item user-icon">
+        {isAuthenticated ? <UserIcon className="icon" /> : <GuestIcon className="icon" />}
+      </div>
+    </header>
+  );
+};
+
+export default Header;
+
+
+----------------------------------------
+
+SVG-иконки
+Создай папку assets/icons/ и положи туда SVG-файлы.
+Примеры SVG-файлов:
+
+Практика (practice.svg)
+xml
+Copy
+Edit
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M2 6h20M5 12h14M8 18h8" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+</svg>
+Профиль (profile.svg)
+xml
+Copy
+Edit
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="12" cy="8" r="4" stroke="white" strokeWidth="2"/>
+  <path d="M4 20c0-4 4-6 8-6s8 2 8 6" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+</svg>
+Тест скорости (speed-test.svg)
+xml
+Copy
+Edit
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="12" cy="12" r="8" stroke="white" strokeWidth="2"/>
+  <path d="M12 12l4-4" stroke="red" strokeWidth="2" strokeLinecap="round"/>
+</svg>
+Настройки (settings.svg)
+xml
+Copy
+Edit
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="12" cy="12" r="3" stroke="white" strokeWidth="2"/>
+  <path d="M4 12h2M18 12h2M12 4v2M12 18v2M6.3 6.3l1.4 1.4M16.3 16.3l1.4 1.4M6.3 17.7l1.4-1.4M16.3 7.7l1.4-1.4" stroke="white" strokeWidth="2"/>
+</svg>
+Авторизованный пользователь (user.svg)
+xml
+Copy
+Edit
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="12" cy="8" r="4" stroke="white" strokeWidth="2"/>
+  <path d="M4 20c0-4 4-6 8-6s8 2 8 6" stroke="white" strokeWidth="2"/>
+  <path d="M19 19l2 2" stroke="green" strokeWidth="2"/>
+</svg>
+Гость (guest.svg)
+xml
+Copy
+Edit
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="12" cy="8" r="4" stroke="white" strokeWidth="2"/>
+  <path d="M4 20c0-4 4-6 8-6s8 2 8 6" stroke="white" strokeWidth="2"/>
+  <path d="M9 12h6" stroke="red" strokeWidth="2"/>
+</svg>
+Обновленный Header.scss
+scss
+Copy
+Edit
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background: linear-gradient(90deg, #1e1e1e, #333);
+  color: white;
+  border-radius: 12px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    color: #ffcc00;
+  }
+}
+
+.icon {
+  width: 28px;
+  height: 28px;
+  fill: white;
+  transition: fill 0.3s ease;
+}
+
+.nav-item:hover .icon {
+  fill: #ffcc00;
+}
+
+.user-icon {
+  margin-left: auto;
+}
