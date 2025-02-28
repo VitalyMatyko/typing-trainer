@@ -1,17 +1,22 @@
 import { OpenLettersType } from "../../../../types/types";
 
-const OpenLetters: { EN: OpenLettersType; RU: OpenLettersType } = {
-	EN: {
-		letters: [...'ABCDEFGHIJKLMNOPQRSTUVWXYZ'],
-		punctuationMarks: [...`;<:{'\\"[\`}|,]>./?`],
+const OpenLetters: { en: OpenLettersType; ru: OpenLettersType } = {
+	en: {
+		letters: [...'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'],
+		marks: [...`;<:{'\\"[\`}|,]>./?`],
 		numbers: [...'0123456789'],
 	},
-	RU: {
-		letters: [...'АОВЛЫДФЖЭКГЕНУШЦЩЙХЪМЬИТСБЧЮЯ'],
-		punctuationMarks: [..."\\'\"/."],
+	ru: {
+		letters: [...'абвгдеёжзийклмнопрстуфхцчшщъыьэюяАОВЛЫДФЖЭКГЕНУШЦЩЙХЪМЬИТСБЧЮЯ'],
+		marks: [..."\\'\"/."],
 		numbers: [...'0123456789'],
-	}
+	},
+
 };
 
 
 export default OpenLetters;
+
+
+// bigLetters: [...'ABCDEFGHIJKLMNOPQRSTUVWXYZ'],
+// bigLetters: [...'АОВЛЫДФЖЭКГЕНУШЦЩЙХЪМЬИТСБЧЮЯ'],

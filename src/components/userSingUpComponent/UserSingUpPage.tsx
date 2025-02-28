@@ -1,13 +1,10 @@
 import { UserSingUpPageProps } from "../../types/types";
 
 
-
-
 const UserSingUpPage: React.FC<UserSingUpPageProps> = ({ closeWindow }) => {
 	return (
 		<div className="user_sing_up_page">
 			<h1>User Sing Up</h1>
-
 			<span onClick={closeWindow} className="close_window">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"

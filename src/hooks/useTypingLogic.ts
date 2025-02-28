@@ -1,4 +1,4 @@
-import { KeyDataProps, GoalDataProps } from './../types/types';
+// import { KeyDataProps, GoalDataProps } from './../types/types';
 
 import { useState, useEffect, useCallback } from 'react';
 import OpenLetters from '../components/mainPagecomponent/keyboards/openLetters/OpenLetters';
@@ -38,10 +38,10 @@ const useTypingLogic = () => {
 	});
 
 	const [interfaceData, setInterfaceData] = useState<InterfaceDataProps>({
-		language: 'EN',                     // This variable stores the currently selected interface language.
+		language: 'en',                     // This variable stores the currently selected interface language.
 		showLanguagesChoiceMenu: false,     // This variable stores a value that determines whether the language selection menu is displayed.
 		selectedAlphabet: [] as string[],   // This variable is an array that stores the selected letters for the alphabet.
-		openedLetters: { EN: [OpenLetters.EN.letters[0]], RU: [OpenLetters.RU.letters[0]] },   // This variable is an object that stores the open letters for each language.
+		openedLetters: { en: [OpenLetters.en.letters[0]], ru: [OpenLetters.ru.letters[0]] },   // This variable is an object that stores the open letters for each language.
 		letterIndex: 1,                     // This variable stores the index of the current letter.
 	});
 
@@ -78,7 +78,7 @@ const useTypingLogic = () => {
 	const getSpeedValue = () => getGoalValue(goalData.typingSpeed, goalData.speedGoal);
 
 	// The addPairLetters function adds a pair of characters (letters, punctuation marks, or numbers) to the current set of open characters, depending on the current typing speed and other parameters.
-	const addPairLetters = (speed: number, language: "EN" | "RU", letterIndex: number, key: "letters" | "punctuationMarks" | "numbers") => {
+	const addPairLetters = (speed: number, language: "en" | "ru", letterIndex: number, key: "letters" | "marks" | "numbers") => {
 		if (speed >= goalData.speedGoal) {
 			setInterfaceData((prev) => {
 				if (language) {
@@ -150,14 +150,13 @@ const useTypingLogic = () => {
 				activeKeyIndex: -1,
 			}))
 		};
-	}, [keyData.isTextFinished])
+	}, [keyData.isTextFinished]);
 
 	// Function getGenerateTypingText generates random text for a set of words that will be used to train typing speed and accuracy.
 	const getGenerateTypingText = useCallback(() => {
-		const alphabet = interfaceData.language === "EN"
-			? interfaceData.openedLetters.EN
-			: interfaceData.openedLetters.RU
-		const letters = alphabet;
+		const letters = interfaceData.language === "en"
+			? interfaceData.openedLetters.en
+			: interfaceData.openedLetters.ru
 		let words = [];
 		let text = '';
 		let wordLength = 0;
@@ -172,13 +171,12 @@ const useTypingLogic = () => {
 		}
 		setKeyData((prev) => ({
 			...prev,
-			newText: text.toLowerCase().split('').map(letter => ({
+			newText: text.split('').map(letter => ({
 				letter,
 				style: prev.letterStyleChange,
 			}))
 		}));
 	}, [interfaceData.language, keyData.typingTextLength, interfaceData.openedLetters]);
-
 
 	// The startTypingText function changes the state of userData, after calling it, the text typing process begins in the application.
 	const showTypingText = () => {
@@ -204,7 +202,7 @@ const useTypingLogic = () => {
 	const handleKeyDown = useCallback((event: KeyboardEvent) => {
 		if (!keyData.typingText) return;
 		const keys = event.key;
-		if (!['EN', 'RU'].includes(interfaceData.language)) return;
+		if (!['en', 'ru'].includes(interfaceData.language)) return;
 		const language = interfaceData.language as keyof typeof layouts;
 		if (keys === ' ' || keys === 'Enter') {
 			setKeyData((prev) => ({

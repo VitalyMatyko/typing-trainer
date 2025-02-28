@@ -1,11 +1,9 @@
 
-
 import { SVGIconProps } from "../../types/types";
 
 
 
 const SVGIcon: React.FC<SVGIconProps> = ({ id, pathData, circleData }) => (
-
 	<svg
 		viewBox="0 0 24 24"
 		fill="none"
@@ -31,9 +29,6 @@ const SVGIcon: React.FC<SVGIconProps> = ({ id, pathData, circleData }) => (
 			<path id={id} d={pathData} />
 		</g>
 	</svg>
-
-
-
 
 )
 

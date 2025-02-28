@@ -2,7 +2,6 @@
 import TopBar from "../../components/mainPagecomponent/TopBar";
 import Header from "../../components/mainPagecomponent/Header";
 import TextToType from "../../components/mainPagecomponent/TextToType";
-import { Alphabet } from "../../components/mainPagecomponent/alphabets/Alphabet";
 import EnglishKeyboard from "../../components/mainPagecomponent/keyboards/EnglishKeyboard";
 import RussianKeyboard from "../../components/mainPagecomponent/keyboards/RussianKeyboard";
 import { HomePageProps } from "../../types/types";
@@ -23,7 +22,6 @@ const HomePage: React.FC<HomePageProps> = ({
 			<Header
 				getClickedComponent={getClickedComponent} />
 			<TopBar
-				Alphabet={Alphabet}
 				goalData={goalData}
 				interfaceData={interfaceData}
 				language={interfaceData.language}
@@ -38,7 +36,7 @@ const HomePage: React.FC<HomePageProps> = ({
 				interfaceData={interfaceData}
 				showTypingText={showTypingText}
 			/>
-			{interfaceData.language === 'EN'
+			{interfaceData.language === 'en'
 				? (<EnglishKeyboard keyData={keyData} activeKeyIndex={keyData.activeKeyIndex} />)
 				: (<RussianKeyboard keyData={keyData} activeKeyIndex={keyData.activeKeyIndex} />)}
 		</div>

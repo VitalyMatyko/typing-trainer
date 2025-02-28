@@ -67,6 +67,7 @@ body {
 
 	// Metrics  component
 	.top-bar {
+		border: 1px solid brown;
 		padding: 20px;
 		display: flex;
 		align-items: center;
@@ -74,27 +75,44 @@ body {
 		background-color: var(--primary-bg-color);
 		border-radius: 0 0 10px 10px;
 		border-bottom: 2px solid var(--border-bottom-color);
+
 		.user-stats {
+			border: 1px solid rgb(254, 3, 250);
+			padding: 5px;
 			width: 100%;
-			display: flex;
-			text-align: right;
-			flex-direction: column;
-			& p {
-				margin: 5px 0;
-			}
+			height: auto;
+			// display: flex;
+			// text-align: right;
+			// flex-direction: column;
+
 			.open_letters {
+				border: 1px solid rgb(3, 3, 254);
 				display: flex;
-				position: relative;
 				align-items: center;
+				margin: 5px 0;
+				width: 86%;
+				height: 70px;
+
 				.text_letter {
+					border: 1px solid rgb(254, 3, 3);
+					display: flex;
+					align-items: center;
+					justify-content: right;
 					font-size: 20px;
-					margin-left: 29px;
+					width: 10%;
+					height: 100%;
 				}
 				.letters {
-					gap: 0 5px;
-					margin: 5px 15px;
-					display: inline-flex;
+					width: 100%;
+					height: 100%;
+					border: 1px solid black;
+					margin-left: 10px;
+					display: flex;
+					align-items: center;
+					gap: 5px;
+					flex-wrap: wrap;
 					font-size: var(--font-size);
+
 					& .characters {
 						width: 29px;
 						height: 29px;
@@ -106,6 +124,7 @@ body {
 						justify-content: center;
 						border-radius: 0 10px;
 						transition: var(--transition-duration);
+
 						&.show {
 							color: black;
 							border: 2px solid rgb(1, 209, 1);
@@ -151,13 +170,18 @@ body {
 			}
 			.type_speed {
 				display: flex;
-				margin-top: 5px;
-				margin-bottom: 3px;
-				margin-left: 19px;
 				align-items: center;
+				border: 1px solid rgb(3, 3, 254);
+				margin: 5px 0;
+
 				.text_speed {
-					margin: 0 15px;
-					font-size: var(--font-size);
+					border: 1px solid rgb(254, 3, 3);
+					width: 7.8%;
+					height: 100%;
+					font-size: 20px;
+					display: flex;
+					align-items: center;
+					justify-content: right;
 				}
 				.speed_goal {
 					font-size: var(--font-size);
@@ -167,12 +191,14 @@ body {
 					font-size: var(--font-size);
 				}
 				.progress-indicator_en {
-					width: 78%;
+					margin-left: 10px;
+					width: 77.2%;
 					height: 7px;
 					border-radius: 10px;
 					border: 1px solid var(--accent-color);
 					.process {
 						background-color: var(--accent-color);
+						transition: all 0.2s ease-in-out;
 					}
 				}
 				.progress-indicator_ru {
@@ -182,6 +208,7 @@ body {
 					border: 1px solid var(--accent-color);
 					.process {
 						background-color: var(--accent-color);
+						transition: all 0.2s ease-in-out;
 					}
 				}
 			}
@@ -208,6 +235,7 @@ body {
 					border: 1px solid var(--accent-color);
 					.process {
 						background-color: var(--accent-color);
+						transition: all 0.2s ease-in-out;
 					}
 				}
 				.progress-indicator_ru {
@@ -216,7 +244,7 @@ body {
 					border-radius: 10px;
 					border: 1px solid var(--accent-color);
 					.process {
-						transition: all 5s ease-in-out;
+						transition: all 0.2s ease-in-out;
 						background-color: var(--accent-color);
 					}
 				}
@@ -255,26 +283,26 @@ body {
 	}
 
 	// Choice language component
-	.choice_languages {
-		left: 5rem;
-		top: -2rem;
-		padding: 10px;
-		display: flex;
-		position: absolute;
-		border-radius: 10px;
-		background-color: var(--primary-bg-color);
-		.english,
-		.russian {
-			display: flex;
-			padding: 0 2px;
-			align-items: center;
-			flex-direction: column;
-			justify-content: center;
-		}
-		& svg {
-			padding: 5px;
-		}
-	}
+	// .choice_languages {
+	// 	left: 5rem;
+	// 	top: -2rem;
+	// 	padding: 10px;
+	// 	display: flex;
+	// 	position: absolute;
+	// 	border-radius: 10px;
+	// 	background-color: var(--primary-bg-color);
+	// 	.english,
+	// 	.russian {
+	// 		display: flex;
+	// 		padding: 0 2px;
+	// 		align-items: center;
+	// 		flex-direction: column;
+	// 		justify-content: center;
+	// 	}
+	// 	& svg {
+	// 		padding: 5px;
+	// 	}
+	// }
 
 	// Typing text component
 	.text_to_type {
@@ -476,73 +504,128 @@ body {
 				transform: scale(0.8);
 			}
 		}
-		.choice_menu {
-			.text_choice {
-				padding-top: 5px;
-				width: fit-content;
-				display: inline-block;
-				ul {
-					li {
-						list-style: none;
-						font-size: 1.5rem;
-						text-align: right;
+
+		.settings_page_choice_menu {
+			display: flex;
+			flex-direction: column;
+
+			.letters_choice,
+			.numbers_choice,
+			.language_choice,
+			.daily_goal_choice,
+			.punctuation_marks_choice,
+			.typing_text_length_choice,
+			.target_typing_speed_choice {
+				border-bottom: 1px solid #b9b9b9;
+				background-color: #ededed;
+				border-radius: 10px;
+				padding: 5px;
+				display: flex;
+				align-items: center;
+				height: 80px;
+				margin-bottom: 10px;
+
+				.letters_choice_text,
+				.numbers_choice_text,
+				.language_choice_text,
+				.daily_goal_choice_text,
+				.punctuation_marks_choice_text,
+				.typing_text_length_choice_text,
+				.target_typing_speed_choice_text {
+					width: 15%;
+					height: 100%;
+					display: flex;
+					align-items: center;
+					justify-content: right;
+					font-size: 1.3rem;
+				}
+
+				.language_choice_input {
+					padding: 5px 5px 5px 13px;
+					display: flex;
+					align-items: center;
+					width: 80%;
+					height: 100%;
+
+					.language_choice_svg {
+						margin: 2px;
+						padding: 3px 4px;
+						border: 3px solid transparent;
+					}
+
+					.active_flag_svg {
+						border-radius: 0 15%;
+						border: 3px solid rgb(1, 209, 1);
+
+						& svg:hover {
+							transform: none;
+							box-shadow: none;
+						}
+					}
+
+					& svg {
+						padding: 0 5px;
+						width: 50px;
+						height: 30px;
+						display: flex;
+						align-items: center;
+						justify-content: center;
 					}
 				}
-			}
-			.input_choice {
-				margin: 0 1rem;
-				width: fit-content;
-				display: inline-block;
-				ul {
-					li {
-						text-align: left;
+
+				.letters_choice_characters,
+				.numbers_choice_characters,
+				.punctuation_choice_characters {
+					gap: 0 5px;
+					margin: 5px 15px;
+					display: inline-flex;
+					flex-wrap: wrap;
+					align-items: center;
+					font-size: var(--font-size);
+					width: 80%;
+					height: 100%;
+					& span {
+						width: 29px;
+						height: 29px;
+						padding: 2px 8px;
 						list-style: none;
-						margin: 0 0 5px 0;
-						font-size: 1.21rem;
-						& div {
-							width: 70px;
-							height: 50px;
-							padding: 5px;
-							margin: 0 5px;
-							align-items: center;
-							display: inline-flex;
-							justify-content: center;
-							border: 3px solid transparent;
-							transition: all 0.2s ease-in-out;
-							& svg:hover {
-								transform: scale(1.1);
-								transition: all 0.1s ease-in-out;
-							}
-							& svg:active {
-								transform: scale(0.9);
-								transition: all 0.1s ease-in-out;
-							}
-						}
-						.active_flag_svg {
-							border-radius: 0 15%;
-							border: 3px solid rgb(1, 209, 1);
-							& svg:hover {
-								transform: none;
-								box-shadow: none;
-							}
-						}
-						#daily_goal_volume {
-							width: 500px;
-							height: 2px;
-						}
+						position: relative;
+						display: inline-flex;
+						align-items: center;
+						justify-content: center;
+						border-radius: 0 10px;
+						transition: var(--transition-duration);
+					}
+					._show {
+						border: 2px solid rgb(1, 209, 1);
+						background-color: var(--highlight-background-color);
+					}
+					._unshow {
+						border: 2px solid rgb(117, 117, 117);
+						background-color: #e4e4e4;
 					}
 				}
-			}
-			.value_choice {
-				width: fit-content;
-				display: inline-block;
-				ul {
-					li {
-						margin-top: 5px;
-						list-style: none;
-						text-align: left;
-						font-size: 1.3rem;
+
+				.daily_goal_choice_value,
+				.typing_text_length_choice_value,
+				.target_typing_speed_choice_value {
+					padding: 5px 15px;
+					align-items: center;
+					width: 67%;
+					height: 100%;
+					display: flex;
+					justify-content: left;
+					align-items: center;
+
+					#daily_goal_volume {
+						width: 100%;
+						height: 2px;
 					}
+				}
+				.daily_goal_choice_minutes,
+				.typing_text_length_choice_letters,
+				.target_typing_speed_choice_l-m {
+					font-size: 1.3rem;
 				}
 			}
 		}

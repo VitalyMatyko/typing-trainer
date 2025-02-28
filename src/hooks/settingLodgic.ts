@@ -4,7 +4,7 @@ import React, { useState } from "react";
 
 const settingLodgic = () => {
 	const [showSettingMenu, setShowSettingMenu] = useState('0');
-	const [choicedLanguage, setChoiceLanguage] = useState('EN');
+	const [choicedLanguage, setChoiceLanguage] = useState('en');
 	const [choicedDailyGoalValue, setChoicedDailyGoalValue] = useState(30);
 	const [choiceTypingTextLengthValue, setChoiceTypingTextLengthValue] = useState(5);
 	const [choicedTargetTypingSpeedValue, setChoicedTargetTypingSpeedValue] = useState(200)
@@ -14,8 +14,8 @@ const settingLodgic = () => {
 		event.stopPropagation();
 		const targetLanguage = event.target as HTMLElement;
 		if (!targetLanguage.id) return;
-		if (targetLanguage.id === '0') setChoiceLanguage('EN');
-		if (targetLanguage.id === '1') setChoiceLanguage('RU');
+		if (targetLanguage.id === '0') setChoiceLanguage('en');
+		if (targetLanguage.id === '1') setChoiceLanguage('ru');
 	}
 
 	// This function handles the change of value in and changes the Daily goal.

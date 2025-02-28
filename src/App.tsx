@@ -7,6 +7,7 @@ import settingLodgic from "./hooks/settingLodgic";
 import ProfilePage from "./components/profileComponent/ProfilePage";
 import SpeedTestPage from "./components/speedTestComponent/SpeedTestPage";
 import UserSingUpPage from "./components/userSingUpComponent/UserSingUpPage";
+import { Alphabets } from "./components/alphabets/Alphabet";
 
 
 
@@ -46,7 +47,7 @@ function App() {
 	const saveSettings = () => {
 		setInterfaceData((prev) => ({
 			...prev,
-			language: choicedLanguage as 'EN' | 'RU',
+			language: choicedLanguage as 'en' | 'ru',
 		}));
 		setShowSettingMenu('0');
 		setGoalData((prev) => ({
@@ -89,6 +90,7 @@ function App() {
 		case '1': pageToRender = <ProfilePage closeWindow={closeWindow} />; break;
 		case '2': pageToRender = <SpeedTestPage closeWindow={closeWindow} />; break;
 		case '3': pageToRender = <SettingsPage
+			Alphabets={Alphabets}
 			interfaceData={interfaceData}
 			choiceLanguage={choicedLanguage}
 			choicedDailyGoalValue={choicedDailyGoalValue}
@@ -96,7 +98,7 @@ function App() {
 			choicedTargetTypingSpeedValue={choicedTargetTypingSpeedValue}
 			closeWindow={closeWindow}
 			saveSettings={saveSettings}
-			handleLanguageChange={handleLanguageChoice}
+			handleLanguageChoice={handleLanguageChoice}
 			handleDailyGoalChange={handleDailyGoalChoice}
 			setChoicedDailyGoalValue={setChoicedDailyGoalValue}
 			handleTypingLengthChoice={handleTypingLengthChoice}

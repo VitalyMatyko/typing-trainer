@@ -4,10 +4,10 @@ import React from "react";
 
 // Describes the structure of an object containing language and alphabet settings
 export interface InterfaceDataProps {
-	language: "EN" | "RU",
+	language: "en" | "ru",
 	showLanguagesChoiceMenu: boolean,
 	selectedAlphabet: string[],
-	openedLetters: { EN: string[], RU: string[] },
+	openedLetters: { en: string[], ru: string[] },
 	letterIndex: number;
 }
 
@@ -39,17 +39,18 @@ export interface GoalDataProps {
 // Defines the props structure for the component that manages page settings
 export interface SettingPageProps {
 	choiceLanguage: string;
-	choicedDailyGoalValue: number;
 	interfaceData: InterfaceDataProps;
+	choicedDailyGoalValue: number;
 	choiceTypingTextLengthValue: number;
 	choicedTargetTypingSpeedValue: number;
+	Alphabets: { en: string[], ru: string[], EN: string[], RU: string[], numbers: string[], marks: string[] };
 	saveSettings: () => void;
 	closeWindow: () => void;
 	setChoicedDailyGoalValue: (event: number) => void;
 	handleDailyGoalChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 	handleTypingLengthChoice: (event: React.ChangeEvent<HTMLInputElement>) => void;
 	handleTargetTypingSpeedChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-	handleLanguageChange: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+	handleLanguageChoice: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 }
 
 // Defines the props structure for the top bar component
@@ -58,7 +59,6 @@ export interface TopBarProps {
 	goalData: GoalDataProps;
 	showLanguagesChoiceMenu: boolean;
 	interfaceData: InterfaceDataProps;
-	Alphabet: Record<string, string[]>;
 	getSpeedValue: () => React.CSSProperties;
 	getAccuracyValue: () => React.CSSProperties;
 	getDailyGoalTimeValue: () => React.CSSProperties;
@@ -85,6 +85,29 @@ export interface KeyboardProps {
 	pressedKey?: string;
 	touchFinger?: string;
 	keyData: KeyDataProps;
+	activeKeyIndex?: number | null;
+	leftShift?: boolean;
+	rightShift?: boolean;
+	spaceLocation?: string;
+	letterStyleChange?: string;
+	shiftLocation?: { left: boolean, right: boolean };
+}
+
+// Defines the props structure for the array of objects keyboard.
+export interface KeyMappingsProps {
+	key?: string;
+	tab?: string;
+	enter?: string;
+	space?: string;
+	color?: string;
+	wide?: boolean;
+	shift?: boolean;
+	capsLock?: string;
+	shiftKey?: string;
+	back_caps?: string;
+	backspace?: string;
+	pressedKey?: string;
+	touchFinger?: string;
 	activeKeyIndex?: number | null;
 	leftShift?: boolean;
 	rightShift?: boolean;
@@ -141,20 +164,20 @@ export interface UserSingUpPageProps {
 }
 
 // Types for keyboard layouts
-export type LayoutsKeyProps = 'EN' | 'RU';
+export type LayoutsKeyProps = 'en' | 'ru';
 
 
 // Describes the structure of an object that groups symbols into three categories:
 export type OpenLettersType = {
 	letters: string[];
 	numbers: string[];
-	punctuationMarks: string[];
+	marks: string[];
 };
 
 // Describes the structure of data associated with the settings logic in the application.
 export interface SettingLodgic {
 	showSettingMenu: string;
-	choicedLanguage: 'EN' | 'RU';
+	choicedLanguage: 'en' | 'ru';
 	choicedDailyGoalValue: number;
 }
 
