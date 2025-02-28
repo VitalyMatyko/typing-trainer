@@ -28,14 +28,14 @@
 🚀 Запуск проекта
 
     1️⃣ Клонирование репозитория:
-    		- git clone https://github.com/username/typing-trainer.git
-    		- cd typing-trainer
+    		git clone https://github.com/username/typing-trainer.git
+    		cd typing-trainer
     2️⃣ Установка зависимостей:
-    		- npm install
+    		npm install
     3️⃣ Запуск в режиме разработки:
-    		- npm run dev
+    		npm run dev
     4️⃣ Сборка проекта:
-    		- npm run build
+    		npm run build
 
 🌟 Скриншоты
 
