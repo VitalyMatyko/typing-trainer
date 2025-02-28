@@ -1,58 +1,59 @@
 # ⚡ **Typing Trainer** 🚀
 
-## 📌 Описание
+## 📌 Description
 
-    🔥  Typing Trainer — это интерактивное React-приложение,
-    			которое помогает пользователям улучшить скорость и точность набора текста.
+    🔥  Typing Trainer is an interactive React app,
+    			 that helps users improve their typing speed and accuracy.
 
-## 💡 С помощью приложения можно:
+## 💡 With the help of the application you can
 
-    🏋️‍♂️ Проверять скорость печати в режиме реального времени
-    🏋️‍♂️ Устанавливать персональные цели
-    🏋️‍♂️ Настраивать интерфейс под свои предпочтения
+    🏋️‍♂️ Set personal goals.
+    	🏋️‍♂️ Check your typing speed in real time.
+    		🏋️‍♂️ Customize the interface to your preferences.
 
-## 🎯 Функционал
+## 🎯 Functional
 
-    ✅ Режим тестирования — проверка скорости набора текста с таймером и статистикой
-    ✅ Настройка параметров — выбор темы, шрифтов и сложности
-    ✅ История результатов — анализируй свой прогресс
-    ✅ Гибкость — адаптация под мобильные и десктопные устройства
+    ✅ Test mode — check your typing speed with a timer and statistics
+    	✅ Configure parameters — choose a theme, fonts and difficulty
+    		✅ History of results — analyze your progress
+    			✅ Flexibility — adapt to mobile and desktop devices
 
-## 🛠️ Технологии
+## 🛠️ Technologies
 
-    💻 React — основа приложения
-    💻 TypeScript — строгая типизация
-    💻 Scss - стилизация
-    💻 Vite — быстрая сборка
+    💻 React — the basic of the application.
+    	💻 TypeScript — strong typing.
+    		💻 Scss - styling.
+    			💻 Vite — fast assembly.
 
-## 🚀 Запуск проекта
+## 🚀 Start project
 
-    1️⃣ Клонирование репозитория:
-    git clone https://github.com/username/typing-trainer.git
-    cd typing-trainer
-    2️⃣ Установка зависимостей:
-    npm install
-    3️⃣ Запуск в режиме разработки:
-    npm run dev
-    4️⃣ Сборка проекта:
-    npm run build
+    1️⃣ Cloning a repository:
+    	git clone https://github.com/username/typing-trainer.git
+    	cd typing-trainer
+    2️⃣ Installing dependencies:
+    	npm install
+    3️⃣ Run in development mode:
+    	npm run dev
+    4️⃣ Assembling the project:
+    	npm run build
 
-## 🌟 Скриншоты
+## 🌟 Screenshots
 
 > 📷 [Скриншот 1](https://github.com/VitalyMatyko/typing-trainer/blob/main/public/typint_trainer_1.png)<br>
 > 📷 [Скриншот 2](https://github.com/VitalyMatyko/typing-trainer/blob/main/public/typint_trainer_2.png)<br>
 > 📷 [Скриншот 3](https://github.com/VitalyMatyko/typing-trainer/blob/main/public/typint_trainer_3.png)
 
-## 📌 Будущие обновления
+## 📌 Future updates
 
-    🔹 Добавление системы уровней и достижений
-    	🔹 Расширенные настройки сложности
-    		🔹 Личный кабинет с авторизацией
+    🔹 Addition of a level system and achievements
+    	🔹 Advanced difficulty settings
+    		🔹 Personal account with authorization
 
-## 📄 Лицензия
+## 📄 License
 
-    ⚠️ Этот проект распространяется под лицензией MIT. Свободно используй и модифицируй! 🎉
+    🎉 This project is licensed under the MIT license.
+    	🎉 Feel free to use and modify it!
 
-## 👨‍💻 Автор: VitalyMatyko <br>
+## 👨‍💻 Author: VitalyMatyko <br>
 
-## 📮 Контакты: [GitHub](https://github.com/VitalyMatyko)
+## 📮 Contacts: [GitHub](https://github.com/VitalyMatyko)
