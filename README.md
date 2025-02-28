@@ -28,20 +28,20 @@
 ## 🚀 Запуск проекта
 
     1️⃣ Клонирование репозитория:
-    	git clone https://github.com/username/typing-trainer.git
-    	cd typing-trainer
+    git clone https://github.com/username/typing-trainer.git
+    cd typing-trainer
     2️⃣ Установка зависимостей:
-    	npm install
+    npm install
     3️⃣ Запуск в режиме разработки:
-    	npm run dev
+    npm run dev
     4️⃣ Сборка проекта:
-    	npm run build
+    npm run build
 
 ## 🌟 Скриншоты
 
-📷 [Скриншот 1](https://github.com/VitalyMatyko/typing-trainer/blob/main/public/typint_trainer_1.png)<br>
-📷 [Скриншот 2](https://github.com/VitalyMatyko/typing-trainer/blob/main/public/typint_trainer_2.png)<br>
-📷 [Скриншот 3](https://github.com/VitalyMatyko/typing-trainer/blob/main/public/typint_trainer_3.png)
+> 📷 [Скриншот 1](https://github.com/VitalyMatyko/typing-trainer/blob/main/public/typint_trainer_1.png)<br>
+> 📷 [Скриншот 2](https://github.com/VitalyMatyko/typing-trainer/blob/main/public/typint_trainer_2.png)<br>
+> 📷 [Скриншот 3](https://github.com/VitalyMatyko/typing-trainer/blob/main/public/typint_trainer_3.png)
 
 ## 📌 Будущие обновления
 
