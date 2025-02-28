@@ -1,58 +1,58 @@
 # ⚡ **Typing Trainer** 🚀
 
-📌 Описание
+## 📌 Описание
 
     🔥  Typing Trainer — это интерактивное React-приложение,
     			которое помогает пользователям улучшить скорость и точность набора текста.
 
-💡 С помощью приложения можно:
+## 💡 С помощью приложения можно:
 
     🏋️‍♂️ Проверять скорость печати в режиме реального времени
     🏋️‍♂️ Устанавливать персональные цели
     🏋️‍♂️ Настраивать интерфейс под свои предпочтения
 
-🎯 Функционал
+## 🎯 Функционал
 
     ✅ Режим тестирования — проверка скорости набора текста с таймером и статистикой
     ✅ Настройка параметров — выбор темы, шрифтов и сложности
     ✅ История результатов — анализируй свой прогресс
     ✅ Гибкость — адаптация под мобильные и десктопные устройства
 
-🛠️ Технологии
+## 🛠️ Технологии
 
     💻 React — основа приложения
     💻 TypeScript — строгая типизация
     💻 Scss - стилизация
     💻 Vite — быстрая сборка
 
-🚀 Запуск проекта
+## 🚀 Запуск проекта
 
     1️⃣ Клонирование репозитория:
-    		git clone https://github.com/username/typing-trainer.git
-    		cd typing-trainer
+    	git clone https://github.com/username/typing-trainer.git
+    	cd typing-trainer
     2️⃣ Установка зависимостей:
-    		npm install
+    	npm install
     3️⃣ Запуск в режиме разработки:
-    		npm run dev
+    	npm run dev
     4️⃣ Сборка проекта:
-    		npm run build
+    	npm run build
 
-🌟 Скриншоты
+## 🌟 Скриншоты
 
 📷 [Скриншот 1](https://github.com/VitalyMatyko/typing-trainer/blob/main/public/typint_trainer_1.png)<br>
 📷 [Скриншот 2](https://github.com/VitalyMatyko/typing-trainer/blob/main/public/typint_trainer_2.png)<br>
 📷 [Скриншот 3](https://github.com/VitalyMatyko/typing-trainer/blob/main/public/typint_trainer_3.png)
 
-📌 Будущие обновления
+## 📌 Будущие обновления
 
     🔹 Добавление системы уровней и достижений
     	🔹 Расширенные настройки сложности
     		🔹 Личный кабинет с авторизацией
 
-📄 Лицензия
+## 📄 Лицензия
 
     ⚠️ Этот проект распространяется под лицензией MIT. Свободно используй и модифицируй! 🎉
 
-👨‍💻 Автор: VitalyMatyko <br>
+## 👨‍💻 Автор: VitalyMatyko <br>
 
-    📮 Контакты: [GitHub](https://github.com/VitalyMatyko)
+## 📮 Контакты: [GitHub](https://github.com/VitalyMatyko)
