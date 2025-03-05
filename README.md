@@ -39,9 +39,13 @@
 
 ## 🌟 Screenshots
 
-> 📷 [Скриншот 1](https://github.com/VitalyMatyko/typing-trainer/blob/main/public/typint_trainer_1.png)<br>
-> 📷 [Скриншот 2](https://github.com/VitalyMatyko/typing-trainer/blob/main/public/typint_trainer_2.png)<br>
-> 📷 [Скриншот 3](https://github.com/VitalyMatyko/typing-trainer/blob/main/public/typint_trainer_3.png)
+> 📷 [Main_page](https://github.com/VitalyMatyko/typing-trainer/blob/main/public/screenshots/main_en.png)<br>
+> 📷 [Settings_page](https://github.com/VitalyMatyko/typing-trainer/blob/main/public/screenshots/Screenshot_SettingsEN.png)<br>
+> 📷 [Choice_letters](https://github.com/VitalyMatyko/typing-trainer/blob/main/public/screenshots/choice_letters_en.png)
+> 📷 [Added_letters](https://github.com/VitalyMatyko/typing-trainer/blob/main/public/screenshots/choiced_letters_en.png)
+> 📷 [Delete_letters](https://github.com/VitalyMatyko/typing-trainer/blob/main/public/screenshots/Screenshot_Delete_CharactersEN.png)
+> 📷 [Typing](https://github.com/VitalyMatyko/typing-trainer/blob/main/public/screenshots/typing_en.png)
+> 📷 [Finish_typing](https://github.com/VitalyMatyko/typing-trainer/blob/main/public/screenshots/finish_typing_en_2.png)
 
 ## 📌 Future updates
 
