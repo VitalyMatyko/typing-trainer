@@ -1,9 +1,8 @@
 import { keyMappings } from "./keyMappings/KeyMapping.RU";
 import { KeyboardProps } from "../../../types/types";
 
-
-const RussianKeyboard: React.FC<KeyboardProps> = ({ keyData }) => {
-
+// The EnglishKeyboard component, which displays a virtual keyboard based on the passed data.
+const RussianKeyboard: React.FC<KeyboardProps> = ({ ...keyData }) => {
 	return (
 		<div className="keyboard">
 			<div className="keyboard_border">
@@ -22,20 +21,18 @@ const RussianKeyboard: React.FC<KeyboardProps> = ({ keyData }) => {
 									${backspace ? "backspace" : ''}
 									${capsLock ? "capslock" : ''}
 									${space ? "space" : ''}
-									${keyData.pressedKey.toUpperCase() === key ? 'active_keys' : ''}
+									${keyData.pressedKey?.toUpperCase() === key ? 'active_keys' : ''}
 									${keyData.pressedKey === key ? 'active_keys' : ''}
-									${leftShift && keyData.shiftLocation.left ? 'active_keys' : ''}
-									${rightShift && keyData.shiftLocation.right ? 'active_keys' : ''}
-									`}
-							>
+									${leftShift && keyData.shiftLocation?.left ? 'active_keys' : ''}
+									${rightShift && keyData.shiftLocation?.right ? 'active_keys' : ''}
+									`}>
 								{shiftKey && <span className="shift-key">{shiftKey}</span>}
 								{touchFinger && (
 									<span className="touch-finger">{touchFinger}</span>
 								)}
 								<span className={`main-key`}>{key}</span>
-							</div>
-						)
-						)}
+							</div>)
+						)};
 					</div>
 				))}
 			</div>

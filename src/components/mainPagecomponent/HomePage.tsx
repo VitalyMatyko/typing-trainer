@@ -1,4 +1,3 @@
-
 import TopBar from "../../components/mainPagecomponent/TopBar";
 import Header from "../../components/mainPagecomponent/Header";
 import TextToType from "../../components/mainPagecomponent/TextToType";
@@ -6,7 +5,7 @@ import EnglishKeyboard from "../../components/mainPagecomponent/keyboards/Englis
 import RussianKeyboard from "../../components/mainPagecomponent/keyboards/RussianKeyboard";
 import { HomePageProps } from "../../types/types";
 
-
+// This component is a main page that contains several subcomponents,
 const HomePage: React.FC<HomePageProps> = ({
 	keyData,
 	goalData,
@@ -34,14 +33,10 @@ const HomePage: React.FC<HomePageProps> = ({
 				keyData={keyData}
 				goalData={goalData}
 				interfaceData={interfaceData}
-				showTypingText={showTypingText}
-			/>
-			{interfaceData.language === 'en'
-				? (<EnglishKeyboard keyData={keyData} activeKeyIndex={keyData.activeKeyIndex} />)
-				: (<RussianKeyboard keyData={keyData} activeKeyIndex={keyData.activeKeyIndex} />)}
+				showTypingText={showTypingText} />
+			{interfaceData.language === 'en' ? <EnglishKeyboard {...keyData} /> : <RussianKeyboard {...keyData} />}
 		</div>
 	);
 }
-
 
 export default HomePage;

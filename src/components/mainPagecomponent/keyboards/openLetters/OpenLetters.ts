@@ -2,21 +2,21 @@ import { OpenLettersType } from "../../../../types/types";
 
 const OpenLetters: { en: OpenLettersType; ru: OpenLettersType } = {
 	en: {
-		letters: [...'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'],
-		marks: [...`;<:{'\\"[\`}|,]>./?`],
+		letters: [...`fjghdkslarutyeiwoqpvmbncxz`],
+		bigLetters: [...'FJGHDKSLARUTEYIWOQPVMBNCXZ'],
 		numbers: [...'0123456789'],
+		marks: [...`;<:{'\\"[\`}|,]>./?`],
 	},
 	ru: {
-		letters: [...'абвгдеёжзийклмнопрстуфхцчшщъыьэюяАОВЛЫДФЖЭКГЕНУШЦЩЙХЪМЬИТСБЧЮЯ'],
-		marks: [..."\\'\"/."],
+		letters: [...`аовлыдфжэкгенушцщйхъмьитсбчюя`],
+		bigLetters: [...'АОВЛЫДФЖЭКГЕНУШЦЩЙХЪМЬИТСБЧЮЯ'],
 		numbers: [...'0123456789'],
+		marks: [...`\\'\"/.`],
 	},
 
 };
 
-
 export default OpenLetters;
 
 
-// bigLetters: [...'ABCDEFGHIJKLMNOPQRSTUVWXYZ'],
-// bigLetters: [...'АОВЛЫДФЖЭКГЕНУШЦЩЙХЪМЬИТСБЧЮЯ'],
+

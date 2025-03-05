@@ -2,7 +2,7 @@ import { KeyMappingsProps } from '../../../../types/types';
 
 
 export const keyMappings: KeyMappingsProps[][] = [
-	// Верхний ряд (числа + символы)
+	// Top row (numbers + symbols)
 	[
 		{ key: "Ё", color: "green", wide: true },
 		{ key: "1", shiftKey: "!", color: "green" },
@@ -20,7 +20,7 @@ export const keyMappings: KeyMappingsProps[][] = [
 		{ key: "Backspace", color: "green", wide: true, backspace: "backspace" },
 	],
 
-	// Средний ряд
+	// Middle row
 	[
 		{ key: "Tab", color: "green", wide: true, tab: "tab" },
 		{ key: "Й", color: "green" },
@@ -38,7 +38,7 @@ export const keyMappings: KeyMappingsProps[][] = [
 		{ key: "\\", shiftKey: "/", color: "green", wide: true, tab: "tab" },
 	],
 
-	// Нижний ряд
+	// Bottom row.
 	[
 		{ key: "Caps Lock", color: "green", wide: true, capsLock: "capslock" },
 		{ key: "Ф", color: "green" },
@@ -55,7 +55,7 @@ export const keyMappings: KeyMappingsProps[][] = [
 		{ key: "Enter", color: "green", wide: true, enter: "enter" },
 	],
 
-	// Нижний функциональный ряд
+	// Bottom functional row.
 	[
 		{ key: "Shift", leftShift: true, color: "green", wide: true, shift: true },
 		{ key: "Я", color: "green" },
@@ -71,7 +71,7 @@ export const keyMappings: KeyMappingsProps[][] = [
 		{ key: "Shift", rightShift: true, color: "green", wide: true, shift: true },
 	],
 
-	// Пробел
+	// Space
 	[
 		{ key: "Ctrl", color: "green", tab: "tab" },
 		{ key: "Win", color: "green" },

@@ -1,20 +1,25 @@
-
 import { SettingPageProps } from "../../types/types";
 
-
+// SettingsPage component for the settings page in the application.
 const SettingsPage: React.FC<SettingPageProps> = ({
 	Alphabets,
-	choiceLanguage,
+	checkboxData,
 	interfaceData,
+	choiceLanguage,
+	addedCharacters,
+	deleteCharacters,
 	choicedDailyGoalValue,
 	choicedTargetTypingSpeedValue,
 	choiceTypingTextLengthValue,
 	closeWindow,
 	saveSettings,
+	getCheckboxValue,
+	getShowClassName,
 	handleLanguageChoice,
 	handleDailyGoalChange,
 	handleTypingLengthChoice,
-	handleTargetTypingSpeedChange }) => {
+	handleTargetTypingSpeedChange,
+	addLetterNumberMarksCharacters }) => {
 
 	const flagLanguages = [
 		{
@@ -72,8 +77,7 @@ const SettingsPage: React.FC<SettingPageProps> = ({
 				</svg>
 			</span>
 
-			<div className="settings_page_choice_menu">
-
+			<div onClick={(e) => addLetterNumberMarksCharacters(e, interfaceData.openedLetters, interfaceData.language)} className="settings_page_choice_menu">
 				<div className="language_choice">
 					<div className="language_choice_text">Language:</div>
 					<div className="language_choice_input">
@@ -89,37 +93,104 @@ const SettingsPage: React.FC<SettingPageProps> = ({
 				</div>
 
 				<div className="letters_choice">
+					<div className="checkbox_container">
+						<input onChange={getCheckboxValue} className="styled_checkbox" type="checkbox" id="smallCheckbox" />
+						<label htmlFor="smallCheckbox"></label>
+					</div>
 					<div className="letters_choice_text">Add small letter:</div>
 					<div className="letters_choice_characters">
-						{choiceLanguage === 'en'
-							? (Alphabets.en.map((letter: string) => (<span key={letter} className={interfaceData.openedLetters.en.includes(letter) ? '_show' : '_unshow'}>{letter}</span>)))
-							: (Alphabets.ru.map((letter: string) => (<span key={letter} className={interfaceData.openedLetters.ru.includes(letter) ? '_show' : '_unshow'}>{letter}</span>)))}
+						{interfaceData.language === 'en'
+							? (Alphabets.en.map((letter: string) =>
+							(<span key={letter} className={getShowClassName(
+								interfaceData.openedLetters,
+								letter,
+								interfaceData.language,
+								checkboxData.smallCheckbox,
+								addedCharacters,
+								deleteCharacters,
+							)}>{letter}</span>)))
+							: (Alphabets.ru.map((letter: string) =>
+							(<span key={letter} className={getShowClassName(
+								interfaceData.openedLetters,
+								letter,
+								interfaceData.language,
+								checkboxData.smallCheckbox,
+								addedCharacters,
+								deleteCharacters)}>{letter}</span>)))}
 					</div>
 				</div>
 
 				<div className="letters_choice">
+					<div className="checkbox_container">
+						<input onChange={getCheckboxValue} className="styled_checkbox" type="checkbox" id="bigCheckbox" />
+						<label htmlFor="bigCheckbox"></label>
+					</div>
 					<div className="letters_choice_text">Add Big letter:</div>
 					<div className="letters_choice_characters">
-						{choiceLanguage === 'en'
-							? (Alphabets.EN.map((letter: string) => (<span key={letter} className={interfaceData.openedLetters.en.includes(letter) ? '_show' : '_unshow'}>{letter}</span>)))
-							: (Alphabets.RU.map((letter: string) => (<span key={letter} className={interfaceData.openedLetters.ru.includes(letter) ? '_show' : '_unshow'}>{letter}</span>)))}
+						{interfaceData.language === 'en'
+							? (Alphabets.EN.map((letter: string) =>
+							(<span key={letter} className={getShowClassName(
+								interfaceData.openedLetters,
+								letter,
+								interfaceData.language,
+								checkboxData.bigCheckbox,
+								addedCharacters,
+								deleteCharacters)}>{letter}</span>)))
+							: (Alphabets.RU.map((letter: string) =>
+							(<span key={letter} className={getShowClassName(
+								interfaceData.openedLetters,
+								letter,
+								interfaceData.language,
+								checkboxData.bigCheckbox,
+								addedCharacters,
+								deleteCharacters)}>{letter}</span>)))}
 					</div>
 				</div>
 
 				<div className="numbers_choice">
+					<div className="checkbox_container">
+						<input onChange={getCheckboxValue} className="styled_checkbox" type="checkbox" id="numberCheckbox" />
+						<label htmlFor="numberCheckbox"></label>
+					</div>
 					<div className="numbers_choice_text">Add number:</div>
-					<div className="numbers_choice_characters">
-						{Alphabets.numbers.map((number: string) => (<span key={number} className="_unshow">{number}</span>))}
+					<div className="letters_choice_characters">
+						{Alphabets.numbers.map((number: string) =>
+						(<span key={number} className={getShowClassName(
+							interfaceData.openedLetters,
+							number,
+							interfaceData.language,
+							checkboxData.numberCheckbox,
+							addedCharacters,
+							deleteCharacters)}>{number}</span>))}
 					</div>
 				</div>
 
 				<div className="punctuation_marks_choice">
+					<div className="checkbox_container">
+						<input onChange={getCheckboxValue} className="styled_checkbox" type="checkbox" id="marksCheckbox" />
+						<label htmlFor="marksCheckbox"></label>
+					</div>
 					<div className="punctuation_marks_choice_text">Add Marks:</div>
-					<div className="punctuation_choice_characters">
-						{Alphabets.marks.map((mark: string) => (<span key={mark} className="_unshow">{mark}</span>))}
+					<div className="letters_choice_characters">
+						{interfaceData.language === 'en'
+							? (Alphabets.marksEN.map((marksEN: string) =>
+							(<span key={marksEN} className={getShowClassName(
+								interfaceData.openedLetters,
+								marksEN,
+								interfaceData.language,
+								checkboxData.marksCheckbox,
+								addedCharacters,
+								deleteCharacters)}>{marksEN}</span>)))
+							: (Alphabets.marksRU.map((marksRU: string) =>
+							(<span key={marksRU} className={getShowClassName(
+								interfaceData.openedLetters,
+								marksRU,
+								interfaceData.language,
+								checkboxData.marksCheckbox,
+								addedCharacters,
+								deleteCharacters)}>{marksRU}</span>)))}
 					</div>
 				</div>
-
 
 				<div className="daily_goal_choice">
 					<div className="daily_goal_choice_text">Daily goal:</div>
@@ -128,7 +199,6 @@ const SettingsPage: React.FC<SettingPageProps> = ({
 					/></div>
 					<div className="daily_goal_choice_minutes"><span>{choicedDailyGoalValue} minuts.</span></div>
 				</div>
-
 
 				<div className="typing_text_length_choice">
 					<div className="typing_text_length_choice_text">Text length:</div>
@@ -145,13 +215,13 @@ const SettingsPage: React.FC<SettingPageProps> = ({
 					/></div>
 					<div className="target_typing_speed_choice_l-m"><span className="target_typing_speed_span">{choicedTargetTypingSpeedValue} l / minutes.</span></div>
 				</div>
-
 			</div>
 
 			<div className="setting_manage">
 				<span className="delete">delete</span>
 				<span onClick={saveSettings} className="save">save</span>
 			</div>
+
 		</div>
 	)
 }

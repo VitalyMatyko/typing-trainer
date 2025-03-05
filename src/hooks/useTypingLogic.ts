@@ -1,10 +1,7 @@
-// import { KeyDataProps, GoalDataProps } from './../types/types';
-
+import { InterfaceDataProps, OpenLettersType } from '../types/types';
+import { layouts } from '../components/mainPagecomponent/layouts/Layouts';
 import { useState, useEffect, useCallback } from 'react';
 import OpenLetters from '../components/mainPagecomponent/keyboards/openLetters/OpenLetters';
-import { InterfaceDataProps } from '../types/types';
-import { layouts } from '../components/mainPagecomponent/layouts/Layouts';
-
 
 
 const useTypingLogic = () => {
@@ -15,7 +12,7 @@ const useTypingLogic = () => {
 		activeKeyIndex: -1,              // This variable stores the index of the active key on the screen or keyboard.
 		startTyping: false,              // This variable stores a value that indicates whether the user has started typing.
 		typingText: false,               // This variable indicates whether you are in the process of typing.
-		typingTextLength: 5,             // This variable stores the length of the text to be printed.
+		typingTextLength: 10,             // This variable stores the length of the text to be printed.
 		letterStyleChange: 'gray',       // This variable stores the style for the current letter.
 		correctlyPressedLetters: [] as string[],                           // This is an array of strings that stores the correct letters to press.
 		inCorrectlyPressedLetters: [] as string[],                         // This is an array of strings that stores the letters that are pressed incorrectly.
@@ -25,11 +22,10 @@ const useTypingLogic = () => {
 		isTextFinished: false,          // This variable stores a value that indicates whether typing is complete.
 	});
 
-
 	const [goalData, setGoalData] = useState({
 		accuracy: 0,                   // Typing accuracy (in percent)
 		speedGoal: 200,                // Target Typing Speed ​​(WPM)
-		dailyGoal: 30,                 // Daily word goal
+		dailyGoal: 10,                 // Daily word goal
 		timeTyping: 0,                 // Typing time
 		typingSpeed: 0,                // Current typing speed (words per minute)
 		typedWordsToday: 0,            // Number of words typed today
@@ -44,7 +40,6 @@ const useTypingLogic = () => {
 		openedLetters: { en: [OpenLetters.en.letters[0]], ru: [OpenLetters.ru.letters[0]] },   // This variable is an object that stores the open letters for each language.
 		letterIndex: 1,                     // This variable stores the index of the current letter.
 	});
-
 
 	// The calculateStats ​​function calculates typing speed ,the printing accuracy, the typing time.
 	const calculateStats = () => {
@@ -78,7 +73,7 @@ const useTypingLogic = () => {
 	const getSpeedValue = () => getGoalValue(goalData.typingSpeed, goalData.speedGoal);
 
 	// The addPairLetters function adds a pair of characters (letters, punctuation marks, or numbers) to the current set of open characters, depending on the current typing speed and other parameters.
-	const addPairLetters = (speed: number, language: "en" | "ru", letterIndex: number, key: "letters" | "marks" | "numbers") => {
+	const addPairLetters = (speed: number, language: 'en' | 'ru', letterIndex: number, key: "letters" | 'bigLetters' | "numbers" | "marks") => {
 		if (speed >= goalData.speedGoal) {
 			setInterfaceData((prev) => {
 				if (language) {
@@ -103,7 +98,8 @@ const useTypingLogic = () => {
 	// This code uses the useEffect hook to call the addPairLetters function every time the typing speed, which is stored in goalData.typingSpeed, changes.
 	useEffect(() => {
 		if (goalData.typingSpeed >= goalData.speedGoal) {
-			addPairLetters(goalData.typingSpeed, interfaceData.language, interfaceData.letterIndex, 'letters');
+			const key = Object.keys(OpenLetters[interfaceData.language])[0] as keyof OpenLettersType;
+			addPairLetters(goalData.typingSpeed, interfaceData.language, interfaceData.letterIndex, key);
 		}
 	}, [goalData.typingSpeed]);
 
@@ -156,7 +152,8 @@ const useTypingLogic = () => {
 	const getGenerateTypingText = useCallback(() => {
 		const letters = interfaceData.language === "en"
 			? interfaceData.openedLetters.en
-			: interfaceData.openedLetters.ru
+			: interfaceData.openedLetters.ru;
+		if (!letters || letters.length === 0) return;
 		let words = [];
 		let text = '';
 		let wordLength = 0;

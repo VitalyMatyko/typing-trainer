@@ -1,7 +1,6 @@
 import { LayoutsKeyProps } from "../../../types/types";
 
 
-
 export const layouts: Record<LayoutsKeyProps, string[]> = {
 	en: [
 		"~", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "_", "+", ":", "\"", "|", "{", "}",
