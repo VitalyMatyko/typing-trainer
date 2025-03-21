@@ -1,6 +1,6 @@
 # ⚡ **Typing Trainer** 🚀
 
-## Click, to see this application: [Typing Trainer](https://typing-trainer-b950.onrender.com)
+## [Typing Trainer](https://typing-trainer-b950.onrender.com) : Click, to see this application.
 
 ## 📌 Description
 
