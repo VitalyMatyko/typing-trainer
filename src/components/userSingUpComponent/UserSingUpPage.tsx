@@ -1,6 +1,6 @@
 import React from "react";
 import { UserSingUpPageProps } from "../../types/types";
-import CreateAccountForm from "./createAccountForm";
+import CreateAccountForm from "./CreateAccountForm"
 
 
 
