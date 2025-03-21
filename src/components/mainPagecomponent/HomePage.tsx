@@ -1,25 +1,48 @@
+import React from "react";
 import TopBar from "../../components/mainPagecomponent/TopBar";
 import Header from "../../components/mainPagecomponent/Header";
 import TextToType from "../../components/mainPagecomponent/TextToType";
-import EnglishKeyboard from "../../components/mainPagecomponent/keyboards/EnglishKeyboard";
-import RussianKeyboard from "../../components/mainPagecomponent/keyboards/RussianKeyboard";
 import { HomePageProps } from "../../types/types";
+import EnglishKeyboard from './keyboards/EnglishKeyboard';
+import RussianKeyboard from './keyboards/RussianKeyboard';
 
 // This component is a main page that contains several subcomponents,
 const HomePage: React.FC<HomePageProps> = ({
 	keyData,
 	goalData,
+	userHistory,
 	interfaceData,
+	showLoginMenu,
+	userInputLoginData,
+	validationInputLoginData,
+	closeWindow,
+	userSignOut,
 	getSpeedValue,
 	showTypingText,
+	getUserLoginIn,
+	getShowLoginMenu,
 	getAccuracyValue,
 	getClickedComponent,
-	getDailyGoalTimeValue }) => {
+	getUserInputLoginData,
+	handleOnBlurLoginForm,
+	getDailyGoalTimeValue,
+	handleOnFocusLoginForm }) => {
 
 	return (
 		<div className="home_page">
 			<Header
-				getClickedComponent={getClickedComponent} />
+				userHistory={userHistory}
+				showLoginMenu={showLoginMenu}
+				userInputLoginData={userInputLoginData}
+				validationInputLoginData={validationInputLoginData}
+				userSignOut={userSignOut}
+				closeWindow={closeWindow}
+				getUserLoginIn={getUserLoginIn}
+				getShowLoginMenu={getShowLoginMenu}
+				getClickedComponent={getClickedComponent}
+				getUserInputLoginData={getUserInputLoginData}
+				handleOnBlurLoginForm={handleOnBlurLoginForm}
+				handleOnFocusLoginForm={handleOnFocusLoginForm} />
 			<TopBar
 				goalData={goalData}
 				interfaceData={interfaceData}
@@ -38,5 +61,6 @@ const HomePage: React.FC<HomePageProps> = ({
 		</div>
 	);
 }
+
 
 export default HomePage;

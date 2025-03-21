@@ -5,11 +5,15 @@ import svgr from "vite-plugin-svgr";
 // https://vite.dev/config/
 export default defineConfig({
 	plugins: [react(), svgr()],
+	base: '/TypingTrainer',
 	server: {
-		host: '0.0.0.0',
-		port: 4173,
+		// host: '0.0.0.0',
+		// port: 4173,
+		proxy: {
+			'/api': 'http://localhost:5000'
+		}
 	},
 	preview: {
 		allowedHosts: ['typing-trainer-b950.onrender.com']
-	}
+	},
 });

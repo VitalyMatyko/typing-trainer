@@ -1,8 +1,8 @@
 import React from "react";
-import { ProfilePageProps } from "../../types/types";
+import { StatisticsPageProps } from "../../types/types";
 
 
-const ProfilePage: React.FC<ProfilePageProps> = ({ closeWindow }) => {
+const StatisticsPage: React.FC<StatisticsPageProps> = ({ closeWindow }) => {
 	return (
 		<div className="profile_page">
 			<h1>Profile Statistic</h1>
@@ -23,8 +23,9 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ closeWindow }) => {
 					</svg>
 				</span>
 			</div>
+			<h2>There is will be User's statistics here soon.</h2>
 		</div>
 	)
 };
 
-export default ProfilePage;
+export default StatisticsPage;

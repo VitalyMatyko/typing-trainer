@@ -1,12 +1,12 @@
 import { SpeedTestPageProps } from "../../types/types";
+import React from "react";
 
 
 const SpeedTestPage: React.FC<SpeedTestPageProps> = ({ closeWindow }) => {
-
 	return (
 		<div className="speed_test_page">
 			<h1>Speed Text</h1>
-			<span onClick={closeWindow} className="close_window">
+			<div onClick={closeWindow} className="close_window">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					width="24"
@@ -20,7 +20,8 @@ const SpeedTestPage: React.FC<SpeedTestPageProps> = ({ closeWindow }) => {
 					<line x1="18" y1="5" x2="5" y2="18" />
 					<line x1="5" y1="5" x2="18" y2="18" />
 				</svg>
-			</span>
+			</div>
+			<h2>There is will be User's speed test here soon.</h2>
 		</div>
 	)
 };
