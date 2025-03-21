@@ -27,7 +27,7 @@ const settingLodgic = () => {
 		const fetchUserData = async () => {
 			setIsLoading(true);
 			try {
-				const response = await apiFetch("http://localhost:4173/getUser", {});
+				const response = await apiFetch("http://localhost:5000/getUser", {});
 				if (!response.ok) throw new Error(`Ошибка: ${response.status} - ${response.statusText}`);
 				const data = await response.json();
 				setUserProfile((prev) => (JSON.stringify(prev) === JSON.stringify(data) ? prev : data));

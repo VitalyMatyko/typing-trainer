@@ -18,7 +18,7 @@ app.use(express.static('public'));
 const PORT = process.env.PORT || 4173;
 
 const corsOptions = {
-	origin: process.env.NODE_ENV === 'production' ? 'https://typing-trainer-b950.onrender.com' : 'http://localhost:5173',
+	origin: process.env.NODE_ENV === 'production' ? 'https://typing-trainer-b950.onrender.com' : 4173,
 	credentials: true,
 };
 app.use(cors(corsOptions));
