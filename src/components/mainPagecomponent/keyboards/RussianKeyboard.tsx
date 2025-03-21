@@ -1,3 +1,4 @@
+import React from "react";
 import { keyMappings } from "./keyMappings/KeyMapping.RU";
 import { KeyboardProps } from "../../../types/types";
 
@@ -28,13 +29,10 @@ const RussianKeyboard: React.FC<KeyboardProps> = ({ ...keyData }) => {
 									`}>
 								{shiftKey && <span className="shift-key">{shiftKey}</span>}
 								{touchFinger && (
-									<span className="touch-finger">{touchFinger}</span>
-								)}
+									<span className="touch-finger">{touchFinger}</span>)}
 								<span className={`main-key`}>{key}</span>
-							</div>)
-						)};
-					</div>
-				))}
+							</div>))};
+					</div>))}
 			</div>
 		</div>
 	);

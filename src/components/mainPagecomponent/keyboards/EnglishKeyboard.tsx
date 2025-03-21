@@ -1,3 +1,4 @@
+import React from 'react';
 import { keyMappings } from '../keyboards/keyMappings/KeyMapping.EN';
 import { KeyboardProps, } from "../../../types/types";
 
@@ -25,18 +26,13 @@ const EnglishKeyboard: React.FC<KeyboardProps> = ({ ...keyData }) => {
 									${keyData.pressedKey?.toUpperCase() === key ? 'active_keys' : ''}
 								  ${keyData.pressedKey === key ? 'active_keys' : ''}
 									${rightShift && keyData.shiftLocation?.right || keyData.pressedKey === key ? 'active_keys' : ''}
-									${leftShift && keyData.shiftLocation?.left || keyData.pressedKey === key ? 'active_keys' : ''}
-									`}>
+									${leftShift && keyData.shiftLocation?.left || keyData.pressedKey === key ? 'active_keys' : ''}`}>
 								{shiftKey && <span className="shift-key">{shiftKey}</span>}
 								{touchFinger && (
-									<span className="touch-finger">{touchFinger}</span>
-								)}
+									<span className="touch-finger">{touchFinger}</span>)}
 								<span className={`main-key`}>{key}</span>
-							</div>
-						)
-						)}
-					</div>
-				))}
+							</div>))}
+					</div>))}
 			</div>
 		</div >
 	);

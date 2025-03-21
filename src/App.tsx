@@ -1,41 +1,50 @@
 import "./styles/App.scss";
+import React from "react";
+import settingLogic from "./hooks/settingLogic";
+import useTypingLogic from "./hooks/useTypingLogic";
+import userSignUpLogic from "./hooks/userSignUpLogic";
+import { AddedDeleteCharacters } from "./types/types";
+import { Alphabets } from "./components/alphabets/Alphabet";
 import HomePage from "./components/mainPagecomponent/HomePage";
 import SettingsPage from "./components/settingsComponent/SettingsPage";
-import useTypingLogic from "./hooks/useTypingLogic";
-import settingLodgic from "./hooks/settingLodgic";
-import ProfilePage from "./components/profileComponent/ProfilePage";
 import SpeedTestPage from "./components/speedTestComponent/SpeedTestPage";
+import StatisticsPage from "./components/statisticsComponent/StatisticsPage";
 import UserSingUpPage from "./components/userSingUpComponent/UserSingUpPage";
-import { Alphabets } from "./components/alphabets/Alphabet";
-import { AddedDeleteCharacters } from "./types/types";
-
+import { Routes, Route, useNavigate } from 'react-router-dom';
 
 // This App creates a basic React application that manages several pages (or components) such as the home page,
 //  profile page, speed test page, settings, and user registration.
 function App() {
+
+	const navigate = useNavigate();
+
 	const {
 		keyData,
 		goalData,
+		loading,
+		userHistory,
 		interfaceData,
+		showLoginMenu,
 		setKeyData,
 		setGoalData,
 		getSpeedValue,
 		showTypingText,
 		setInterfaceData,
 		getAccuracyValue,
-		getDailyGoalTimeValue } = useTypingLogic();
+		getShowLoginMenu,
+		getDailyGoalTimeValue } = useTypingLogic(navigate);
 
 	const {
+		isLoading,
 		checkboxData,
 		addedCharacters,
 		deleteCharacters,
-		showSettingMenu,
 		choicedLanguage,
 		choicedDailyGoalValue,
 		choiceTypingTextLengthValue,
 		choicedTargetTypingSpeedValue,
 		getCheckboxValue,
-		setChoiceLanguage,
+		setChoicedLanguage,
 		setAddedCharacters,
 		setDeleteCharacters,
 		setShowSettingMenu,
@@ -47,7 +56,23 @@ function App() {
 		handleTargetTypingSpeedChoice,
 		setChoiceTypingTextLengthValue,
 		addLetterNumberMarksCharacters,
-		setChoicedTargetTypingSpeedValue } = settingLodgic();
+		setChoicedTargetTypingSpeedValue
+	} = settingLogic();
+
+	const {
+		userInputLoginData,
+		validationInputLoginData,
+		userInputRegistrationData,
+		validationInputRegistrationData,
+		userSignOut,
+		getUserSignUp,
+		getUserLoginIn,
+		getUserInputLoginData,
+		handleOnBlurLoginForm,
+		handleOnFocusLoginForm,
+		getUserInputRegistrationData,
+		handleOnBlurRegistrationForm,
+		handleOnFocusRegistrationForm } = userSignUpLogic();
 
 	// Updates interface settings, target data, and current text information.
 	const saveSettings = () => {
@@ -81,7 +106,8 @@ function App() {
 			...prev,
 			typingTextLength: +choiceTypingTextLengthValue,
 			typingText: false,
-		}))
+		}));
+		window.location.href = '/';
 	};
 
 	// The getShowClassName function takes 3 arguments and returns a specific CSS class based on the conditions.
@@ -93,66 +119,93 @@ function App() {
 		addedCharacters: AddedDeleteCharacters,
 		deleteCharacters: AddedDeleteCharacters,
 	) => {
+		if (!data?.[language] || !addedCharacters?.[language] || !deleteCharacters?.[language]) return '_unshow';
 		if (data[language].includes(letter) && !addedCharacters[language].includes(letter)) return '_show';
 		if (addedCharacters[language].includes(letter) && !data[language].includes(letter)) return '_show_border';
 		if (deleteCharacters[language].includes(letter) && data[language].includes(letter)) return '_delete_border'
 		if (checkbox) return '_unshow_hover';
 		return '_unshow';
-	}
+	};
 
 	// The closeWindow function performs several actions to reset or refresh states,
 	//  in which it closes the preferences window and restores the current values ​​that were previously set.
+
 	const closeWindow = () => {
 		setShowSettingMenu('0');
-		setChoiceLanguage(interfaceData.language);
+		setChoicedLanguage(interfaceData.language);
 		setChoicedDailyGoalValue(goalData.dailyGoal);
 		setChoicedTargetTypingSpeedValue(goalData.speedGoal);
 		setChoiceTypingTextLengthValue(keyData.typingTextLength);
+		window.location.href = '/';
 	}
-	let pageToRender;
-	switch (showSettingMenu) {
-		case '0': pageToRender = (<HomePage
-			keyData={keyData}
-			goalData={goalData}
-			interfaceData={interfaceData}
-			getSpeedValue={getSpeedValue}
-			showTypingText={showTypingText}
-			getAccuracyValue={getAccuracyValue}
-			getClickedComponent={getClickedComponent}
-			getDailyGoalTimeValue={getDailyGoalTimeValue}
-		/>); break;
-		case '1': pageToRender = <ProfilePage closeWindow={closeWindow} />; break;
-		case '2': pageToRender = <SpeedTestPage closeWindow={closeWindow} />; break;
-		case '3': pageToRender = <SettingsPage
-			Alphabets={Alphabets}
-			checkboxData={checkboxData}
-			interfaceData={interfaceData}
-			choiceLanguage={choicedLanguage}
-			addedCharacters={addedCharacters}
-			deleteCharacters={deleteCharacters}
-			choicedDailyGoalValue={choicedDailyGoalValue}
-			choiceTypingTextLengthValue={choiceTypingTextLengthValue}
-			choicedTargetTypingSpeedValue={choicedTargetTypingSpeedValue}
-			closeWindow={closeWindow}
-			saveSettings={saveSettings}
-			getShowClassName={getShowClassName}
-			getCheckboxValue={getCheckboxValue}
-			handleLanguageChoice={handleLanguageChoice}
-			handleDailyGoalChange={handleDailyGoalChoice}
-			setChoicedDailyGoalValue={setChoicedDailyGoalValue}
-			handleTypingLengthChoice={handleTypingLengthChoice}
-			handleTargetTypingSpeedChange={handleTargetTypingSpeedChoice}
-			addLetterNumberMarksCharacters={addLetterNumberMarksCharacters}
-		/>; break;
-		case '4': pageToRender = <UserSingUpPage closeWindow={closeWindow} />; break;
-		default: pageToRender = null;
-	}
+
 	return (
-		<div className="App">
-			{pageToRender}
+		<div className='App'>
+			{(loading) ? (<div>Loading......</div>) : (
+				<Routes>
+					<Route path="/" element={
+						<HomePage
+							keyData={keyData}
+							goalData={goalData}
+							userHistory={userHistory}
+							interfaceData={interfaceData}
+							showLoginMenu={showLoginMenu}
+							validationInputLoginData={validationInputLoginData}
+							userInputLoginData={userInputLoginData}
+							closeWindow={closeWindow}
+							getUserLoginIn={getUserLoginIn}
+							getUserInputLoginData={getUserInputLoginData}
+							getShowLoginMenu={getShowLoginMenu}
+							userSignOut={userSignOut}
+							getSpeedValue={getSpeedValue}
+							showTypingText={showTypingText}
+							getAccuracyValue={getAccuracyValue}
+							getClickedComponent={getClickedComponent}
+							handleOnBlurLoginForm={handleOnBlurLoginForm}
+							handleOnFocusLoginForm={handleOnFocusLoginForm}
+							getDailyGoalTimeValue={getDailyGoalTimeValue} />} />
+
+					<Route path="/Statistics" element={<StatisticsPage closeWindow={closeWindow} />} />
+					<Route path="/SpeedTest" element={<SpeedTestPage closeWindow={closeWindow} />} />
+
+					<Route path="/Settings" element={
+						<SettingsPage
+							isLoading={isLoading}
+							Alphabets={Alphabets}
+							checkboxData={checkboxData}
+							interfaceData={interfaceData}
+							choicedLanguage={choicedLanguage}
+							addedCharacters={addedCharacters}
+							deleteCharacters={deleteCharacters}
+							choicedDailyGoalValue={choicedDailyGoalValue}
+							choiceTypingTextLengthValue={choiceTypingTextLengthValue}
+							choicedTargetTypingSpeedValue={choicedTargetTypingSpeedValue}
+							closeWindow={closeWindow}
+							saveSettings={saveSettings}
+							getShowClassName={getShowClassName}
+							getCheckboxValue={getCheckboxValue}
+							handleLanguageChoice={handleLanguageChoice}
+							handleDailyGoalChange={handleDailyGoalChoice}
+							setChoicedDailyGoalValue={setChoicedDailyGoalValue}
+							handleTypingLengthChoice={handleTypingLengthChoice}
+							handleTargetTypingSpeedChange={handleTargetTypingSpeedChoice}
+							addLetterNumberMarksCharacters={addLetterNumberMarksCharacters} />} />
+
+					<Route path="/SignUp" element={
+						<UserSingUpPage
+							userInputRegistrationData={userInputRegistrationData}
+							validationInputRegistrationData={validationInputRegistrationData}
+							closeWindow={closeWindow}
+							getUserSignUp={getUserSignUp}
+							handleOnBlurRegistrationForm={handleOnBlurRegistrationForm}
+							getUserInputRegistrationData={getUserInputRegistrationData}
+							handleOnFocusRegistrationForm={handleOnFocusRegistrationForm} />} />
+					<Route path="*" element={<h1>Страница не найдена</h1>} />
+				</Routes>
+			)}
 		</div>
-	)
-}
+	);
+};
 export default App;
 
 

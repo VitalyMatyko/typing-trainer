@@ -1,4 +1,5 @@
 import { SVGIconProps } from "../../types/types";
+import React from "react";
 
 // This SVGIcon component is used to render an SVG icon with certain parameters.
 const SVGIcon: React.FC<SVGIconProps> = ({ id, pathData, circleData }) => (

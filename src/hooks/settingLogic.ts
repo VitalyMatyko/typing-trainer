@@ -1,16 +1,62 @@
-import React, { useState } from "react";
+
+import React, { useState, useEffect } from "react";
 import { AddedDeleteCharacters } from "../types/types";
+import { apiFetch } from "../components/utils/api";
 
 
 const settingLodgic = () => {
+
+
 	const [showSettingMenu, setShowSettingMenu] = useState('0');
-	const [choicedLanguage, setChoiceLanguage] = useState<'en' | 'ru'>('en');
+
+	const [choicedLanguage, setChoicedLanguage] = useState('en');
 	const [choicedDailyGoalValue, setChoicedDailyGoalValue] = useState(10);
 	const [choiceTypingTextLengthValue, setChoiceTypingTextLengthValue] = useState(10);
 	const [choicedTargetTypingSpeedValue, setChoicedTargetTypingSpeedValue] = useState(200);
+
 	const [checkboxData, setCheckboxData] = useState({ smallCheckbox: false, bigCheckbox: false, numberCheckbox: false, marksCheckbox: false, });
 	const [addedCharacters, setAddedCharacters] = useState<AddedDeleteCharacters>({ en: [], ru: [] });
 	const [deleteCharacters, setDeleteCharacters] = useState<AddedDeleteCharacters>({ en: [], ru: [] });
+
+
+	const [userProfile, setUserProfile] = useState();
+	const [isLoading, setIsLoading] = useState(false);
+
+
+	useEffect(() => {
+		const fetchUserData = async () => {
+			setIsLoading(true);
+			try {
+				const response = await apiFetch("http://localhost:5000/getUser", {});
+				if (!response.ok) throw new Error(`Ошибка: ${response.status} - ${response.statusText}`);
+				const data = await response.json();
+				setUserProfile((prev) => (JSON.stringify(prev) === JSON.stringify(data) ? prev : data));
+
+				if (data?.profile) {
+					setChoicedLanguage(() => {
+						const availableLanguages = ['en', 'ru'];
+						return availableLanguages.includes(data.profile.language) ? data.profile.language : 'en';
+					});
+					setChoicedDailyGoalValue(() => {
+						return data.profile.dailyGoal;
+					});
+					setChoiceTypingTextLengthValue(() => {
+						return data.profile.typingTextLength;
+					});
+					setChoicedTargetTypingSpeedValue(() => {
+						return data.profile.speedGoal;
+					});
+				};
+			} catch (error) {
+				console.error(`Ошибка запроса: ${error}`);
+			} finally {
+				setIsLoading(false);
+			}
+		};
+		fetchUserData();
+	}, []);
+
+
 
 	// This function changes the state of the checkbox.
 	const getCheckboxValue = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -26,8 +72,8 @@ const settingLodgic = () => {
 		event.stopPropagation();
 		const targetLanguage = event.target as HTMLElement;
 		if (!targetLanguage.id) return;
-		if (targetLanguage.id === '0') setChoiceLanguage('en');
-		if (targetLanguage.id === '1') setChoiceLanguage('ru');
+		if (targetLanguage.id === '0') setChoicedLanguage('en');
+		if (targetLanguage.id === '1') setChoicedLanguage('ru');
 	}
 
 	// This function handles a click on a span containing a character, which is then added or removed from the setDeleteCharacters list
@@ -82,10 +128,11 @@ const settingLodgic = () => {
 		setChoicedTargetTypingSpeedValue(+targetTypingSpeed);
 	}
 
-	//This function opens the menu of settings.
+	// This function opens the menu of settings.
 	const getClickedComponent = (id: string) => setShowSettingMenu(id);
 
 	return {
+		isLoading,
 		checkboxData,
 		addedCharacters,
 		deleteCharacters,
@@ -95,7 +142,7 @@ const settingLodgic = () => {
 		choicedTargetTypingSpeedValue,
 		choiceTypingTextLengthValue,
 		getCheckboxValue,
-		setChoiceLanguage,
+		setChoicedLanguage,
 		setShowSettingMenu,
 		setAddedCharacters,
 		setDeleteCharacters,
@@ -108,7 +155,7 @@ const settingLodgic = () => {
 		setChoiceTypingTextLengthValue,
 		addLetterNumberMarksCharacters,
 		setChoicedTargetTypingSpeedValue,
-	}
+	};
 };
 
 export default settingLodgic;

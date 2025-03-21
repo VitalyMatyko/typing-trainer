@@ -1,7 +1,9 @@
 
-import { StrictMode } from "react";
+import React from "react";
+// import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App";
+import { BrowserRouter } from 'react-router-dom';
 
 
 
@@ -9,9 +11,11 @@ import App from "./App";
 const rootElement = document.getElementById('root');
 if (rootElement) {
 	createRoot(rootElement).render(
-		<StrictMode>
+		// <StrictMode>
+		<BrowserRouter basename="/TypingTrainer" future={{ v7_relativeSplatPath: true }}>
 			<App />
-		</StrictMode>
+		</BrowserRouter>
+		// </StrictMode>
 	);
 } else {
 	console.error(`Element with id 'root' is not find`);

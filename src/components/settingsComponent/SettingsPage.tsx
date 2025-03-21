@@ -1,11 +1,13 @@
 import { SettingPageProps } from "../../types/types";
+import React from "react";
 
 // SettingsPage component for the settings page in the application.
 const SettingsPage: React.FC<SettingPageProps> = ({
+	isLoading,
 	Alphabets,
 	checkboxData,
 	interfaceData,
-	choiceLanguage,
+	choicedLanguage,
 	addedCharacters,
 	deleteCharacters,
 	choicedDailyGoalValue,
@@ -59,170 +61,179 @@ const SettingsPage: React.FC<SettingPageProps> = ({
 
 	];
 
+
 	return (
-		<div className="settings_page">
-			<span onClick={closeWindow} className="close_window">
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					width="24"
-					height="24"
-					viewBox="0 0 24 24"
-					fill="none"
-					stroke="currentColor"
-					strokeWidth="2"
-					strokeLinecap="round"
-					strokeLinejoin="round">
-					<line x1="18" y1="5" x2="5" y2="18" />
-					<line x1="5" y1="5" x2="18" y2="18" />
-				</svg>
-			</span>
+		<>
+			{isLoading ? (<div>Loading.....</div>)
+				: (
+					<div className="settings_page">
+						<div onClick={closeWindow} className="close_window">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="24"
+								height="24"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								strokeWidth="2"
+								strokeLinecap="round"
+								strokeLinejoin="round">
+								<line x1="18" y1="5" x2="5" y2="18" />
+								<line x1="5" y1="5" x2="18" y2="18" />
+							</svg>
+						</div>
 
-			<div onClick={(e) => addLetterNumberMarksCharacters(e, interfaceData.openedLetters, interfaceData.language)} className="settings_page_choice_menu">
-				<div className="language_choice">
-					<div className="language_choice_text">Language:</div>
-					<div className="language_choice_input">
-						{flagLanguages.map((object) =>
-							<div
-								onClick={handleLanguageChoice}
-								key={object.flag}
-								data-flag={object.flag}
-								className={`language_choice_svg ${choiceLanguage === object.flag ? 'active_flag_svg' : ''}`}>
-								{object.svg}
-							</div>)}
+						<div onClick={(e) => addLetterNumberMarksCharacters(e, interfaceData.openedLetters, interfaceData.language)} className="settings_page_choice_menu">
+							<div className="language_choice">
+								<div className="language_choice_text">Language:</div>
+								<div className="language_choice_input">
+									{flagLanguages.map((object) =>
+										<div
+											onClick={handleLanguageChoice}
+											key={object.flag}
+											data-flag={object.flag}
+											className={`language_choice_svg ${choicedLanguage === object.flag ? 'active_flag_svg' : ''}`}>
+											{object.svg}
+										</div>)}
+								</div>
+							</div>
+
+							<div className="letters_choice">
+								<div className="checkbox_container">
+									<input onChange={getCheckboxValue} className="styled_checkbox" type="checkbox" id="smallCheckbox" />
+									<label htmlFor="smallCheckbox"></label>
+								</div>
+								<div className="letters_choice_text">Add small letter:</div>
+								<div className="letters_choice_characters">
+									{interfaceData.language === 'en'
+										? (Alphabets.en.map((letter) =>
+										(<span key={letter} className={getShowClassName(
+											interfaceData.openedLetters,
+											letter,
+											interfaceData.language,
+											checkboxData.smallCheckbox,
+											addedCharacters,
+											deleteCharacters,)}>{letter}</span>)))
+										: (Alphabets.ru.map((letter: string) =>
+										(<span key={letter} className={getShowClassName(
+											interfaceData.openedLetters,
+											letter,
+											interfaceData.language,
+											checkboxData.smallCheckbox,
+											addedCharacters,
+											deleteCharacters)}>{letter}</span>)))}
+								</div>
+							</div>
+
+							<div className="letters_choice">
+								<div className="checkbox_container">
+									<input onChange={getCheckboxValue} className="styled_checkbox" type="checkbox" id="bigCheckbox" />
+									<label htmlFor="bigCheckbox"></label>
+								</div>
+								<div className="letters_choice_text">Add Big letter:</div>
+								<div className="letters_choice_characters">
+									{interfaceData.language === 'en'
+										? (Alphabets.EN.map((letter: string) =>
+										(<span key={letter} className={getShowClassName(
+											interfaceData.openedLetters,
+											letter,
+											interfaceData.language,
+											checkboxData.bigCheckbox,
+											addedCharacters,
+											deleteCharacters)}>{letter}</span>)))
+										: (Alphabets.RU.map((letter: string) =>
+										(<span key={letter} className={getShowClassName(
+											interfaceData.openedLetters,
+											letter,
+											interfaceData.language,
+											checkboxData.bigCheckbox,
+											addedCharacters,
+											deleteCharacters)}>{letter}</span>)))}
+								</div>
+							</div>
+
+							<div className="numbers_choice">
+								<div className="checkbox_container">
+									<input onChange={getCheckboxValue} className="styled_checkbox" type="checkbox" id="numberCheckbox" />
+									<label htmlFor="numberCheckbox"></label>
+								</div>
+								<div className="numbers_choice_text">Add number:</div>
+								<div className="letters_choice_characters">
+									{Alphabets.numbers.map((number: string) =>
+									(<span key={number} className={getShowClassName(
+										interfaceData.openedLetters,
+										number,
+										interfaceData.language,
+										checkboxData.numberCheckbox,
+										addedCharacters,
+										deleteCharacters)}>{number}</span>))}
+								</div>
+							</div>
+
+							<div className="punctuation_marks_choice">
+								<div className="checkbox_container">
+									<input onChange={getCheckboxValue} className="styled_checkbox" type="checkbox" id="marksCheckbox" />
+									<label htmlFor="marksCheckbox"></label>
+								</div>
+								<div className="punctuation_marks_choice_text">Add Marks:</div>
+								<div className="letters_choice_characters">
+									{interfaceData.language === 'en'
+										? (Alphabets.marksEN.map((marksEN: string) =>
+										(<span key={marksEN} className={getShowClassName(
+											interfaceData.openedLetters,
+											marksEN,
+											interfaceData.language,
+											checkboxData.marksCheckbox,
+											addedCharacters,
+											deleteCharacters)}>{marksEN}</span>)))
+										: (Alphabets.marksRU.map((marksRU: string) =>
+										(<span key={marksRU} className={getShowClassName(
+											interfaceData.openedLetters,
+											marksRU,
+											interfaceData.language,
+											checkboxData.marksCheckbox,
+											addedCharacters,
+											deleteCharacters)}>{marksRU}</span>)))}
+								</div>
+							</div>
+
+							<div className="daily_goal_choice">
+								<div className="daily_goal_choice_text">Daily goal:</div>
+								<div className="daily_goal_choice_value">
+									<input min='1' max='100' type="range" name="daily_goal" id="daily_goal_volume" value={choicedDailyGoalValue} step='1'
+										onChange={handleDailyGoalChange}
+									/></div>
+								<div className="daily_goal_choice_minutes"><span>{choicedDailyGoalValue} minuts.</span></div>
+							</div>
+
+							<div className="typing_text_length_choice">
+								<div className="typing_text_length_choice_text">Text length:</div>
+								<div className="typing_text_length_choice_value">
+									<input min='2' max='100' type="range" name="typing_text_length" id="daily_goal_volume" value={choiceTypingTextLengthValue} step='1'
+										onChange={handleTypingLengthChoice}
+									/></div>
+								<div className="typing_text_length_choice_letters"><span>{choiceTypingTextLengthValue} letters.</span></div>
+							</div>
+
+							<div className="target_typing_speed_choice">
+								<div className="target_typing_speed_choice_text">Target speed:</div>
+								<div className="target_typing_speed_choice_value">
+									<input min='1' max='1000' type="range" name="daily_goal" id="daily_goal_volume" value={choicedTargetTypingSpeedValue} step='1'
+										onChange={handleTargetTypingSpeedChange}
+									/></div>
+								<div className="target_typing_speed_choice_l-m"><span className="target_typing_speed_span">{choicedTargetTypingSpeedValue} l / minutes.</span></div>
+							</div>
+						</div>
+
+						<div className="setting_manage">
+							<span className="delete">DELETE</span>
+							<span onClick={saveSettings} className="save">SAVE</span>
+						</div>
 					</div>
-				</div>
+				)
+			}
 
-				<div className="letters_choice">
-					<div className="checkbox_container">
-						<input onChange={getCheckboxValue} className="styled_checkbox" type="checkbox" id="smallCheckbox" />
-						<label htmlFor="smallCheckbox"></label>
-					</div>
-					<div className="letters_choice_text">Add small letter:</div>
-					<div className="letters_choice_characters">
-						{interfaceData.language === 'en'
-							? (Alphabets.en.map((letter: string) =>
-							(<span key={letter} className={getShowClassName(
-								interfaceData.openedLetters,
-								letter,
-								interfaceData.language,
-								checkboxData.smallCheckbox,
-								addedCharacters,
-								deleteCharacters,
-							)}>{letter}</span>)))
-							: (Alphabets.ru.map((letter: string) =>
-							(<span key={letter} className={getShowClassName(
-								interfaceData.openedLetters,
-								letter,
-								interfaceData.language,
-								checkboxData.smallCheckbox,
-								addedCharacters,
-								deleteCharacters)}>{letter}</span>)))}
-					</div>
-				</div>
-
-				<div className="letters_choice">
-					<div className="checkbox_container">
-						<input onChange={getCheckboxValue} className="styled_checkbox" type="checkbox" id="bigCheckbox" />
-						<label htmlFor="bigCheckbox"></label>
-					</div>
-					<div className="letters_choice_text">Add Big letter:</div>
-					<div className="letters_choice_characters">
-						{interfaceData.language === 'en'
-							? (Alphabets.EN.map((letter: string) =>
-							(<span key={letter} className={getShowClassName(
-								interfaceData.openedLetters,
-								letter,
-								interfaceData.language,
-								checkboxData.bigCheckbox,
-								addedCharacters,
-								deleteCharacters)}>{letter}</span>)))
-							: (Alphabets.RU.map((letter: string) =>
-							(<span key={letter} className={getShowClassName(
-								interfaceData.openedLetters,
-								letter,
-								interfaceData.language,
-								checkboxData.bigCheckbox,
-								addedCharacters,
-								deleteCharacters)}>{letter}</span>)))}
-					</div>
-				</div>
-
-				<div className="numbers_choice">
-					<div className="checkbox_container">
-						<input onChange={getCheckboxValue} className="styled_checkbox" type="checkbox" id="numberCheckbox" />
-						<label htmlFor="numberCheckbox"></label>
-					</div>
-					<div className="numbers_choice_text">Add number:</div>
-					<div className="letters_choice_characters">
-						{Alphabets.numbers.map((number: string) =>
-						(<span key={number} className={getShowClassName(
-							interfaceData.openedLetters,
-							number,
-							interfaceData.language,
-							checkboxData.numberCheckbox,
-							addedCharacters,
-							deleteCharacters)}>{number}</span>))}
-					</div>
-				</div>
-
-				<div className="punctuation_marks_choice">
-					<div className="checkbox_container">
-						<input onChange={getCheckboxValue} className="styled_checkbox" type="checkbox" id="marksCheckbox" />
-						<label htmlFor="marksCheckbox"></label>
-					</div>
-					<div className="punctuation_marks_choice_text">Add Marks:</div>
-					<div className="letters_choice_characters">
-						{interfaceData.language === 'en'
-							? (Alphabets.marksEN.map((marksEN: string) =>
-							(<span key={marksEN} className={getShowClassName(
-								interfaceData.openedLetters,
-								marksEN,
-								interfaceData.language,
-								checkboxData.marksCheckbox,
-								addedCharacters,
-								deleteCharacters)}>{marksEN}</span>)))
-							: (Alphabets.marksRU.map((marksRU: string) =>
-							(<span key={marksRU} className={getShowClassName(
-								interfaceData.openedLetters,
-								marksRU,
-								interfaceData.language,
-								checkboxData.marksCheckbox,
-								addedCharacters,
-								deleteCharacters)}>{marksRU}</span>)))}
-					</div>
-				</div>
-
-				<div className="daily_goal_choice">
-					<div className="daily_goal_choice_text">Daily goal:</div>
-					<div className="daily_goal_choice_value"><input min='0' max='100' type="range" name="daily_goal" id="daily_goal_volume" value={choicedDailyGoalValue} step='1'
-						onChange={handleDailyGoalChange}
-					/></div>
-					<div className="daily_goal_choice_minutes"><span>{choicedDailyGoalValue} minuts.</span></div>
-				</div>
-
-				<div className="typing_text_length_choice">
-					<div className="typing_text_length_choice_text">Text length:</div>
-					<div className="typing_text_length_choice_value"><input min='0' max='100' type="range" name="typing_text_length" id="daily_goal_volume" value={choiceTypingTextLengthValue} step='1'
-						onChange={handleTypingLengthChoice}
-					/></div>
-					<div className="typing_text_length_choice_letters"><span>{choiceTypingTextLengthValue} letters.</span></div>
-				</div>
-
-				<div className="target_typing_speed_choice">
-					<div className="target_typing_speed_choice_text">Target speed:</div>
-					<div className="target_typing_speed_choice_value"><input min='0' max='1000' type="range" name="daily_goal" id="daily_goal_volume" value={choicedTargetTypingSpeedValue} step='1'
-						onChange={handleTargetTypingSpeedChange}
-					/></div>
-					<div className="target_typing_speed_choice_l-m"><span className="target_typing_speed_span">{choicedTargetTypingSpeedValue} l / minutes.</span></div>
-				</div>
-			</div>
-
-			<div className="setting_manage">
-				<span className="delete">delete</span>
-				<span onClick={saveSettings} className="save">save</span>
-			</div>
-
-		</div>
+		</>
 	)
 }
 

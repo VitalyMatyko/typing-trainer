@@ -1,5 +1,5 @@
 import React from "react";
-import { TopBarProps } from '../../types/types.js';
+import { TopBarProps } from "../../types/types";
 
 // This component displays a top panel (or bar) with various information about the user's statistics related to their typing goals.
 const TopBar: React.FC<TopBarProps> = ({

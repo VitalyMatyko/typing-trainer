@@ -5,15 +5,14 @@ const OpenLetters: { en: OpenLettersType; ru: OpenLettersType } = {
 		letters: [...`fjghdkslarutyeiwoqpvmbncxz`],
 		bigLetters: [...'FJGHDKSLARUTEYIWOQPVMBNCXZ'],
 		numbers: [...'0123456789'],
-		marks: [...`;<:{'\\"[\`}|,]>./?`],
+		marks: [';', "'", ':', '"', '[', ']', '{', '}', '\\', '|', ',', '.', '<', '>', '/', '?', '`', '~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '=', '_', '+'],
 	},
 	ru: {
 		letters: [...`аовлыдфжэкгенушцщйхъмьитсбчюя`],
 		bigLetters: [...'АОВЛЫДФЖЭКГЕНУШЦЩЙХЪМЬИТСБЧЮЯ'],
 		numbers: [...'0123456789'],
-		marks: [...`\\'\"/.`],
+		marks: ['!', '"', '№', ';', '%', ':', '?', '*', '(', ')', '-', '=', '_', '+', '\\', '/', '.', ','],
 	},
-
 };
 
 export default OpenLetters;
