@@ -61,7 +61,7 @@ const userSignUpLogic = () => {
 			!validationInputRegistrationData.userPasswordOk) return;
 
 		try {
-			const response = await apiFetch("http://localhost:5000/SignUp", {
+			const response = await apiFetch("http://localhost:4173/SignUp", {
 				method: 'POST',
 				body: JSON.stringify(userInputRegistrationData),
 			});
@@ -83,7 +83,7 @@ const userSignUpLogic = () => {
 		if (!userInputLoginData.userLoginName || !userInputLoginData.userLoginPassword) return;
 		if (!validationInputLoginData.userLoginNameOk || !validationInputLoginData.userLoginPasswordOk) return;
 		try {
-			const responseLogin = await apiFetch("http://localhost:5000/SignIn", {
+			const responseLogin = await apiFetch("http://localhost:4173/SignIn", {
 				method: 'POST',
 				credentials: "include",
 				body: JSON.stringify(userInputLoginData)
@@ -103,7 +103,7 @@ const userSignUpLogic = () => {
 	// user sign out
 	const userSignOut = async () => {
 		try {
-			const responseSignOut = await apiFetch("http://localhost:5000/SignOut", { method: 'POST', credentials: "include" });
+			const responseSignOut = await apiFetch("http://localhost:4173/SignOut", { method: 'POST', credentials: "include" });
 			if (!responseSignOut) throw new Error(`Ошибка при выходе пользователя, нет ответа с сервера.`)
 			const dataSignOut = await responseSignOut.json();
 

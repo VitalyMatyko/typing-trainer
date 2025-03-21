@@ -62,7 +62,7 @@ const useTypingLogic = (navigate: NavigateFunction) => {
 		const fetchUserData = async () => {
 			setLoading(true);
 			try {
-				const response = await apiFetch("http://localhost:5000/getUser", {}, navigate);
+				const response = await apiFetch("http://localhost:4173/getUser", {}, navigate);
 
 				if (!response.ok) {
 					const text = await response.text();
@@ -124,7 +124,7 @@ const useTypingLogic = (navigate: NavigateFunction) => {
 				};
 
 				try {
-					const response = await apiFetch("http://localhost:5000/updateUserData", {
+					const response = await apiFetch("http://localhost:4173/updateUserData", {
 						method: 'POST',
 						headers: { 'Content-Type': 'application/json' },
 						body: JSON.stringify({ _id: userHistory?._id, newHistoryData, newStatisticsData }),
