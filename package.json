@@ -5,11 +5,11 @@
 	"type": "module",
 	"scripts": {
 		"dev-vite": "vite",
-		"dev": "concurrently \"vite\" \"nodemon src/components/userSingUpComponent/server.js\"",
+		"dev": "concurrently \"vite\" \"nodemon src/server.js\"",
 		"build": "vite build",
 		"lint": "eslint .",
-		"preview": "vite preview --port=$PORT",
-		"server": "nodemon src/components/userSingUpComponent/server.js"
+		"preview": "vite preview",
+		"server": "node src/server.js"
 	},
 	"dependencies": {
 		"@fortawesome/free-brands-svg-icons": "^6.7.2",

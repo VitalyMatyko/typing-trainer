@@ -29,5 +29,5 @@ dist-ssr
 .cache
 assets
 *.tsbuildinfo
-
+top_panel.txt
 
