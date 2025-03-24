@@ -63,6 +63,11 @@ const userSchema = new Schema({
 
 const User = mongoose.model('User', userSchema);
 
+if (!process.env.ACCESS_SECRET || !process.env.REFRESH_SECRET) {
+	console.error("❌ Отсутствует секретный ключ для токенов ❌");
+	process.exit(1);
+}
+
 // Token verification.
 const authMiddleware = (req, res, next) => {
 	const token = req.cookies.accessToken;
