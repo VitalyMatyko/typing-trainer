@@ -9,10 +9,10 @@ import * as process from 'process';
 // https://vite.dev/config/
 export default defineConfig({
 	plugins: [react(), svgr()],
-	base: '/TypingTrainer/',
+	base: '/TypingTrainer',
 	server: {
 		host: true,
-		port: process.env.PORT || 5173,
+		port: process.env.PORT || 5000,
 		proxy: {
 			'/api': 'http://localhost:5000'
 		},
