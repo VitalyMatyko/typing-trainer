@@ -1,4 +1,5 @@
 {
+	"$schema": "./tsconfig-schema.json",
 	"name": "typing-trainer",
 	"private": true,
 	"version": "0.0.0",
