@@ -34,6 +34,8 @@ const userSignUpLogic = () => {
 		userLoginPasswordError: false,
 	});
 
+	const API_URL = import.meta.env.VITE_API_URL || `http://localhost:5000`;
+
 	// Get user input registration data.
 	const getUserInputRegistrationData = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setInputRegistrationData((prev) => ({
@@ -61,7 +63,7 @@ const userSignUpLogic = () => {
 			!validationInputRegistrationData.userPasswordOk) return;
 
 		try {
-			const response = await apiFetch("http://localhost:5000/SignUp", {
+			const response = await apiFetch(`${API_URL}/SignUp`, {
 				method: 'POST',
 				body: JSON.stringify(userInputRegistrationData),
 			});
@@ -83,7 +85,7 @@ const userSignUpLogic = () => {
 		if (!userInputLoginData.userLoginName || !userInputLoginData.userLoginPassword) return;
 		if (!validationInputLoginData.userLoginNameOk || !validationInputLoginData.userLoginPasswordOk) return;
 		try {
-			const responseLogin = await apiFetch("http://localhost:5000/SignIn", {
+			const responseLogin = await apiFetch(`${API_URL}/SignIn`, {
 				method: 'POST',
 				credentials: "include",
 				body: JSON.stringify(userInputLoginData)
@@ -103,7 +105,7 @@ const userSignUpLogic = () => {
 	// user sign out
 	const userSignOut = async () => {
 		try {
-			const responseSignOut = await apiFetch("http://localhost:5000/SignOut", { method: 'POST', credentials: "include" });
+			const responseSignOut = await apiFetch(`${API_URL}/SignOut`, { method: 'POST', credentials: "include" });
 			if (!responseSignOut) throw new Error(`Ошибка при выходе пользователя, нет ответа с сервера.`)
 			const dataSignOut = await responseSignOut.json();
 

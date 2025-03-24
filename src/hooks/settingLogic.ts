@@ -23,11 +23,14 @@ const settingLodgic = () => {
 	const [isLoading, setIsLoading] = useState(false);
 
 
+	const API_URL = import.meta.env.VITE_API_URL || `http://localhost:5000`;
+
+
 	useEffect(() => {
 		const fetchUserData = async () => {
 			setIsLoading(true);
 			try {
-				const response = await apiFetch("http://localhost:5000/getUser", {});
+				const response = await apiFetch(`${API_URL}/getUser`, {});
 				if (!response.ok) throw new Error(`Ошибка: ${response.status} - ${response.statusText}`);
 				const data = await response.json();
 				setUserProfile((prev) => (JSON.stringify(prev) === JSON.stringify(data) ? prev : data));

@@ -55,6 +55,8 @@ const useTypingLogic = (navigate: NavigateFunction) => {
 	const [loading, setLoading] = useState(false);
 	const [showLoginMenu, setShowLoginMenu] = useState(false);
 
+	const API_URL = import.meta.env.VITE_API_URL || `http://localhost:5000`;
+
 
 
 	// Function for receiving data from the server.
@@ -62,7 +64,7 @@ const useTypingLogic = (navigate: NavigateFunction) => {
 		const fetchUserData = async () => {
 			setLoading(true);
 			try {
-				const response = await apiFetch("http://localhost:5000/getUser", {}, navigate);
+				const response = await apiFetch(`${API_URL}/getUser`, {}, navigate);
 
 				if (!response.ok) {
 					const text = await response.text();
@@ -124,7 +126,7 @@ const useTypingLogic = (navigate: NavigateFunction) => {
 				};
 
 				try {
-					const response = await apiFetch("http://localhost:5000/updateUserData", {
+					const response = await apiFetch(`${API_URL}/updateUserData`, {
 						method: 'POST',
 						headers: { 'Content-Type': 'application/json' },
 						body: JSON.stringify({ _id: userHistory?._id, newHistoryData, newStatisticsData }),

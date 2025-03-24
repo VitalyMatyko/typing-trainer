@@ -17,6 +17,7 @@ app.use(cookieParser());
 app.use(express.static('public'));
 const PORT = process.env.PORT || 5000;
 
+
 const corsOptions = {
 	origin: process.env.NODE_ENV === 'production' ? 'https://typing-trainer-b950.onrender.com' : 5000,
 	credentials: true,
@@ -24,7 +25,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 if (!process.env.MONGO_URI) {
-	console.error("❌ Отсутствует MONGO_URI в .env ❌");
+	console.error("❌ Отсутствует URI базы данных ❌");
 	process.exit(1);
 }
 
