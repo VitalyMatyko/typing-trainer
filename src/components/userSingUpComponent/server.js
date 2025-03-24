@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static('public'));
-const PORT = process.env.PORT || 4173;
+const PORT = process.env.PORT || 4000;
 
 const corsOptions = {
 	origin: process.env.NODE_ENV === 'production' ? 'https://typing-trainer-b950.onrender.com' : 4173,

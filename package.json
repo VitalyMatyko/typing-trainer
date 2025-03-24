@@ -8,7 +8,7 @@
 		"dev": "concurrently \"vite\" \"nodemon src/components/userSingUpComponent/server.js\"",
 		"build": "vite build",
 		"lint": "eslint .",
-		"preview": "vite preview",
+		"preview": "vite preview --port=$PORT",
 		"server": "nodemon src/components/userSingUpComponent/server.js"
 	},
 	"dependencies": {

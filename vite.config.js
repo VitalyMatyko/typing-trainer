@@ -1,6 +1,7 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import svgr from "vite-plugin-svgr";
+import * as process from 'process';
 
 
 
@@ -8,16 +9,16 @@ import svgr from "vite-plugin-svgr";
 // https://vite.dev/config/
 export default defineConfig({
 	plugins: [react(), svgr()],
-	base: '/TypingTrainer',
+	base: '/TypingTrainer/',
 	server: {
-		host: '0.0.0.0',
-		port: 5000,
-		// proxy: {
-		// 	'/api': 'http://localhost:5000'
-		// 	// '/api': 'https://your-production-backend-url.com',
-		// }
+		host: true,
+		port: process.env.PORT || 5173,
+		proxy: {
+			'/api': 'http://localhost:5000'
+		},
 	},
 	preview: {
+		port: process.env.PORT || 5000,
 		allowedHosts: ['typing-trainer-b950.onrender.com']
 	},
 });
