@@ -23,7 +23,9 @@ const settingLodgic = () => {
 	const [isLoading, setIsLoading] = useState(false);
 
 
-	const API_URL = import.meta.env.VITE_API_URL || `http://localhost:5000`;
+	const API_URL = import.meta.env.NODE_ENV === 'production'
+		? import.meta.env.BACKEND_URL
+		: import.meta.env.VITE_API_URL;
 
 
 	useEffect(() => {
