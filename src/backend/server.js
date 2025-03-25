@@ -298,8 +298,25 @@ app.post('/updateUserData', authMiddleware, async (req, res) => {
 	};
 });
 
+app.get('/', (req, res) => {
+	try {
+		const isServerAvailable = req.url;
+
+		if (!isServerAvailable) {
+			res.status(400).json({ message: 'Сервер недоступен, ошибка подключения' })
+		};
+
+		res.status(200).json({ message: 'Сервер запущен', host: req.hostname, url: req.url })
+	} catch (error) {
+		res.status(500).json({ message: `Сервер недоступен`, ошибка: `${error.message}` });
+	};
+});
+
 // 🚀
-app.listen(PORT, () => console.log(`✅ ✔️  Сервер запущен на http://localhost:${PORT} ✔️`));
+app.listen(PORT, () => {
+	console.log(`✅ ✔️  Сервер запущен на http://localhost:${PORT} ✔️`)
+
+});
 
 
 
