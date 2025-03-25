@@ -298,7 +298,7 @@ app.post('/updateUserData', authMiddleware, async (req, res) => {
 	};
 });
 
-app.get('/', (req, res) => {
+app.get('/TypingTrainer', (req, res) => {
 	try {
 		const isServerAvailable = req.url;
 
@@ -308,14 +308,13 @@ app.get('/', (req, res) => {
 
 		res.status(200).json({ message: 'Сервер запущен', host: req.hostname, url: req.url })
 	} catch (error) {
-		res.status(500).json({ message: `Сервер недоступен`, ошибка: `${error.message}` });
+		res.status(500).json({ message: `Сервер недоступен`, ошибка: error.message });
 	};
 });
 
 // 🚀
 app.listen(PORT, () => {
 	console.log(`✅ ✔️  Сервер запущен на http://localhost:${PORT} ✔️`)
-
 });
 
 
