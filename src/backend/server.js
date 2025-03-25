@@ -298,7 +298,7 @@ app.post('/updateUserData', authMiddleware, async (req, res) => {
 	};
 });
 
-app.get('/TypingTrainer', (req, res) => {
+app.get('/', (req, res) => {
 	try {
 		const isServerAvailable = req.url;
 
