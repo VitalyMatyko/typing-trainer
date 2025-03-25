@@ -1,5 +1,5 @@
 import React from 'react';
-import { keyMappings } from '../keyboards/keyMappings/KeyMapping.EN';
+import { keyMappings } from './keyMappings/KeyMapping.EN';
 import { KeyboardProps, } from "../../../types/types";
 
 // The EnglishKeyboard component, which displays a virtual keyboard based on the passed data.

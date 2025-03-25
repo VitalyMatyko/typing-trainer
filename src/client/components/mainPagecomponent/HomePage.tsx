@@ -1,7 +1,7 @@
 import React from "react";
-import TopBar from "../../components/mainPagecomponent/TopBar";
-import Header from "../../components/mainPagecomponent/Header";
-import TextToType from "../../components/mainPagecomponent/TextToType";
+import TopBar from "./TopBar";
+import Header from "./Header";
+import TextToType from "./TextToType";
 import { HomePageProps } from "../../types/types";
 import EnglishKeyboard from './keyboards/EnglishKeyboard';
 import RussianKeyboard from './keyboards/RussianKeyboard';

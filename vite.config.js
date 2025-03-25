@@ -5,9 +5,6 @@ import * as process from 'process';
 import path from "path";
 
 
-
-
-
 // https://vite.dev/config/
 export default defineConfig({
 	root: './',

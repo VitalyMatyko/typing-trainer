@@ -6,11 +6,11 @@
 	"type": "module",
 	"scripts": {
 		"dev-vite": "vite",
-		"dev": "concurrently \"vite\" \"nodemon src/server.js\"",
+		"dev": "concurrently \"vite\" \"nodemon src/backend/server.js\"",
 		"build": "vite build",
 		"lint": "eslint .",
 		"preview": "vite preview",
-		"server": "node src/server.js"
+		"server": "node src/backend/server.js"
 	},
 	"dependencies": {
 		"@fortawesome/free-brands-svg-icons": "^6.7.2",
@@ -51,7 +51,6 @@
 		"nodemon": "^3.1.9",
 		"ts-node": "^10.9.2",
 		"typescript": "^5.7.3",
-		"vite": "^6.2.3",
 		"vite-plugin-svgr": "^4.3.0"
 	}
 }
