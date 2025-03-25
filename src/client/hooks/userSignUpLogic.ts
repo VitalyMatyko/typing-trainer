@@ -36,8 +36,12 @@ const userSignUpLogic = () => {
 	});
 
 	const API_URL = import.meta.env.NODE_ENV === 'production'
-		? import.meta.env.BACKEND_URL
+		? import.meta.env.VITE_BACKEND_URL
 		: import.meta.env.VITE_API_URL;
+
+	console.log(`NODE_ENV: ${import.meta.env.NODE_ENV}`);
+	console.log(`API_URL: ${API_URL}`);
+	console.log(`NODE_ENV: ${import.meta.env.MODE}`);
 
 	// Get user input registration data.
 	const getUserInputRegistrationData = (event: React.ChangeEvent<HTMLInputElement>) => {
