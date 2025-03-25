@@ -27,6 +27,6 @@ export default defineConfig({
 	},
 	preview: {
 		port: process.env.PORT || 5050,
-		allowedHosts: ['typing-trainer-b950.onrender.com']
+		allowedHosts: ['typing-trainer-b950.onrender.com', 'https://typing-trainer-backend.onrender.com/']
 	},
 });
