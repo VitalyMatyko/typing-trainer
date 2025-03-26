@@ -20,8 +20,8 @@ const PORT = process.env.PORT || 5000;
 
 const corsOptions = {
 	origin: process.env.NODE_ENV === 'production'
-		? 'https://typing-trainer-b950.onrender.com'  // Продакшн-URL
-		: ['http://localhost:5050'],  // URL для разработки
+		? 'https://typing-trainer-client.onrender.com'  // Продакшн-URL
+		: 'http://localhost:5050',  // URL для разработки
 	credentials: true,
 };
 app.use(cors(corsOptions));

@@ -3,10 +3,14 @@ import { NavigateFunction } from "react-router-dom";
 
 
 
+const API_URL = import.meta.env.MODE === 'production'
+	? import.meta.env.VITE_BACKEND_URL
+	: import.meta.env.VITE_API_URL;
+
 
 export const refreshAccessToken = async () => {
 	try {
-		const res = await fetch('http://localhost:5000/refresh', {
+		const res = await fetch(`http://${API_URL}/refresh`, {
 			method: 'POST',
 			credentials: 'include',
 		});

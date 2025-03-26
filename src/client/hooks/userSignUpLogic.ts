@@ -1,4 +1,4 @@
-import { NamedExportSpecifier } from './../../../node_modules/@swc/types/index.d';
+// import { NamedExportSpecifier } from './../../../node_modules/@swc/types/index.d';
 import React, { useCallback, useEffect, useState } from "react";
 import _ from 'lodash'
 import { apiFetch } from "../components/utils/api";
@@ -39,7 +39,6 @@ const userSignUpLogic = () => {
 		? import.meta.env.VITE_BACKEND_URL
 		: import.meta.env.VITE_API_URL;
 
-	console.log(`NODE_ENV: ${import.meta.env.NODE_ENV}`);
 	console.log(`API_URL: ${API_URL}`);
 	console.log(`NODE_ENV: ${import.meta.env.MODE}`);
 
