@@ -59,8 +59,6 @@ const useTypingLogic = (navigate: NavigateFunction) => {
 		? import.meta.env.VITE_BACKEND_URL
 		: import.meta.env.VITE_API_URL;
 
-
-
 	// Function for receiving data from the server.
 	useEffect(() => {
 		const fetchUserData = async () => {

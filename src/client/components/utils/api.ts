@@ -7,19 +7,12 @@ const API_URL = import.meta.env.MODE === 'production'
 	? import.meta.env.VITE_BACKEND_URL
 	: import.meta.env.VITE_API_URL;
 
-
-console.log(`API_URL: ${API_URL}`);
-console.log(`NODE_ENV: ${import.meta.env.MODE}`);
-
 export const refreshAccessToken = async () => {
 	try {
 		const res = await fetch(`${API_URL}/refresh`, {
 			method: 'POST',
 			credentials: 'include',
 		});
-
-		console.log('Ответ при обновлении токена:', res);
-
 		if (!res.ok) throw new Error(`Ошибка обновления токена`);
 		return true;
 	} catch (error) {

@@ -5,28 +5,20 @@ import { apiFetch } from "../components/utils/api";
 
 
 const settingLodgic = () => {
-
-
 	const [showSettingMenu, setShowSettingMenu] = useState('0');
-
 	const [choicedLanguage, setChoicedLanguage] = useState('en');
 	const [choicedDailyGoalValue, setChoicedDailyGoalValue] = useState(10);
 	const [choiceTypingTextLengthValue, setChoiceTypingTextLengthValue] = useState(10);
 	const [choicedTargetTypingSpeedValue, setChoicedTargetTypingSpeedValue] = useState(200);
-
 	const [checkboxData, setCheckboxData] = useState({ smallCheckbox: false, bigCheckbox: false, numberCheckbox: false, marksCheckbox: false, });
 	const [addedCharacters, setAddedCharacters] = useState<AddedDeleteCharacters>({ en: [], ru: [] });
 	const [deleteCharacters, setDeleteCharacters] = useState<AddedDeleteCharacters>({ en: [], ru: [] });
-
-
 	const [userProfile, setUserProfile] = useState();
 	const [isLoading, setIsLoading] = useState(false);
-
 
 	const API_URL = import.meta.env.MODE === 'production'
 		? import.meta.env.VITE_BACKEND_URL
 		: import.meta.env.VITE_API_URL;
-
 
 	useEffect(() => {
 		const fetchUserData = async () => {
@@ -60,8 +52,6 @@ const settingLodgic = () => {
 		};
 		fetchUserData();
 	}, []);
-
-
 
 	// This function changes the state of the checkbox.
 	const getCheckboxValue = (event: React.ChangeEvent<HTMLInputElement>) => {

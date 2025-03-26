@@ -18,31 +18,19 @@ app.use(express.static('public'));
 const PORT = process.env.PORT || 5000;
 app.set('trust proxy', 1);
 
-
-// const corsOptions = {
-// 	origin: process.env.NODE_ENV === 'production'
-// 		? 'https://typing-trainer-client.onrender.com'  // Продакшн-URL
-// 		: 'http://localhost:5050',  // URL для разработки
-// 	credentials: true,
-// };
-
-
 if (!process.env.MONGO_URI) {
 	console.error("❌ Отсутствует URI базы данных ❌");
 	process.exit(1);
 }
-
 if (!process.env.ACCESS_SECRET || !process.env.REFRESH_SECRET) {
 	console.error("❌ Отсутствует секретный ключ для токенов ❌");
 	process.exit(1);
 }
 
-
 const allowedOrigins = [
 	'http://localhost:5050',
 	'https://typing-trainer-client.onrender.com'
 ];
-
 const corsOptions = {
 	origin: (origin, callback) => {
 		if (!origin || allowedOrigins.includes(origin)) {
@@ -54,8 +42,6 @@ const corsOptions = {
 	credentials: true,
 };
 app.use(cors(corsOptions));
-
-
 
 mongoose
 	.connect(process.env.MONGO_URI)
@@ -91,16 +77,12 @@ const userSchema = new Schema({
 
 const User = mongoose.model('User', userSchema);
 
-
-
 // Token verification.
 const authMiddleware = (req, res, next) => {
 	const token = req.cookies.accessToken;
-
 	if (!token) {
 		return res.status(401).json({ message: "Токен не найден" });
 	};
-
 	try {
 		const decoded = jwt.verify(token, process.env.ACCESS_SECRET);
 		if (!decoded || !decoded.userId) {
@@ -121,13 +103,12 @@ app.post('/refresh', async (req, res) => {
 
 	try {
 		const decoded = jwt.verify(refreshToken, process.env.REFRESH_SECRET);
-
 		const user = await User.findOne(decoded.userId);
 		if (!user) {
 			res.clearCookie("refreshToken", {
 				httpOnly: true,
 				secure: process.env.NODE_ENV === 'production',
-				sameSite: "strict"
+				sameSite: 'None',
 			});
 			return res.status(401).json({ message: 'Пользователь не найден' });
 		};
@@ -137,7 +118,7 @@ app.post('/refresh', async (req, res) => {
 		res.cookie("accessToken", newAccessToken, {
 			httpOnly: true,
 			secure: process.env.NODE_ENV === 'production',
-			sameSite: 'strict',
+			sameSite: 'None',
 			maxAge: 1 * 60 * 1000,
 		})
 			.json({ message: `Токен обновлён` });
@@ -147,7 +128,7 @@ app.post('/refresh', async (req, res) => {
 		res.clearCookie("refreshToken", {
 			httpOnly: true,
 			secure: process.env.NODE_ENV === 'production',
-			sameSite: "strict"
+			sameSite: 'None',
 		});
 
 		if (error.name === 'TokenExpiredError') {
@@ -164,14 +145,12 @@ app.post('/refresh', async (req, res) => {
 app.post('/SignUp', async (req, res) => {
 	try {
 		const { userName, userEmail, userPassword } = req.body;
-
 		if (!process.env.ACCESS_SECRET || !process.env.REFRESH_SECRET) {
 			console.error(`❌ Отсутствует токен ❌`);
 			return res.status(500).json({ message: 'Ошибка сервера' })
 		};
 
 		const existingUser = await User.findOne({ email: userEmail });
-
 		if (existingUser) {
 			console.log(`❌ Не удалось отправить данные. Статус: ${existingUser.status} ❌`);
 			return res.status(400).json({ redirect: '/', message: "Пользователь уже существует" });
@@ -205,22 +184,16 @@ app.post('/SignUp', async (req, res) => {
 		const accessToken = jwt.sign({ userId: newUser.user_id }, process.env.ACCESS_SECRET, { expiresIn: '1m' });
 		const refreshToken = jwt.sign({ userId: newUser.user_id }, process.env.REFRESH_SECRET, { expiresIn: '7d' });
 
-		console.log(`accessToken: ${accessToken}`);
-		console.log(`refreshToken: ${refreshToken}`);
-		console.log(`newUser: ${newUser}`);
-
 		res
 			.cookie('accessToken', accessToken, {
 				httpOnly: true,
 				secure: process.env.NODE_ENV === 'production',
-				// sameSite: "strict",
 				sameSite: 'None',
 				maxAge: 1 * 60 * 1000
 			})
 			.cookie('refreshToken', refreshToken, {
 				httpOnly: true,
 				secure: process.env.NODE_ENV === 'production',
-				// sameSite: 'strict',
 				sameSite: 'None',
 				maxAge: 7 * 24 * 60 * 60 * 1000,
 			})
@@ -253,14 +226,12 @@ app.post('/SignIn', async (req, res) => {
 		.cookie('accessToken', accessToken, {
 			httpOnly: true,
 			secure: process.env.NODE_ENV === 'production',
-			// sameSite: 'strict',
 			sameSite: 'None',
 			maxAge: 1 * 60 * 1000,
 		})
 		.cookie('refreshToken', refreshToken, {
 			httpOnly: true,
 			secure: process.env.NODE_ENV === 'production',
-			// sameSite: 'strict',
 			sameSite: 'None',
 			maxAge: 7 * 24 * 60 * 60 * 1000,
 		})
@@ -274,13 +245,11 @@ app.post('/SignOut', (req, res) => {
 			.clearCookie('accessToken', {
 				httpOnly: true,
 				secure: process.env.NODE_ENV === 'production',
-				// sameSite: 'strict',
 				sameSite: 'None',
 			})
 			.clearCookie("refreshToken", {
 				httpOnly: true,
 				secure: process.env.NODE_ENV === 'production',
-				// sameSite: 'strict',
 				sameSite: 'None',
 			});
 		return res.status(200).json({ redirect: '/', message: `✔️ Вы успешно вышли из аккаунта ✔️` });
@@ -336,20 +305,6 @@ app.post('/updateUserData', authMiddleware, async (req, res) => {
 	} catch (error) {
 		console.error(`Ошибка при обновлении данных пользователя: ${error.message}`);
 		res.status(500).json({ message: `Внутренняя ошибка сервера` });
-	};
-});
-
-app.get('/', (req, res) => {
-	try {
-		const isServerAvailable = req.url;
-
-		if (!isServerAvailable) {
-			res.status(400).json({ message: 'Сервер недоступен, ошибка подключения' })
-		};
-
-		res.status(200).json({ message: 'Сервер запущен', host: req.hostname, url: req.url })
-	} catch (error) {
-		res.status(500).json({ message: `Сервер недоступен`, ошибка: error.message });
 	};
 });
 

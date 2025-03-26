@@ -38,9 +38,6 @@ const userSignUpLogic = () => {
 		? import.meta.env.VITE_BACKEND_URL
 		: import.meta.env.VITE_API_URL;
 
-	// console.log(`API_URL: ${API_URL}`);
-	// console.log(`NODE_ENV: ${import.meta.env.MODE}`);
-
 	// Get user input registration data.
 	const getUserInputRegistrationData = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setInputRegistrationData((prev) => ({
@@ -76,9 +73,6 @@ const userSignUpLogic = () => {
 				console.log(`❌ Не удалось отправить данные для регистрации, Пользователь уже существует`);
 			};
 			const data = await response.json();
-
-			console.log(`data: ${data}`)
-
 			if (data.redirect === '/') {
 				window.location.href = data.redirect;
 			};
@@ -121,7 +115,6 @@ const userSignUpLogic = () => {
 				console.log(`Вы успешно вышли из аккаунта`);
 				window.location.href = dataSignOut.redirect;
 			};
-
 		} catch (error) {
 			console.error(`Ошибка при выходе пользователя: ${error}`);
 		};
