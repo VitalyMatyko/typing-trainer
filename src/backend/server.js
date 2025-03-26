@@ -16,6 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static('public'));
 const PORT = process.env.PORT || 5000;
+app.set('trust proxy', 1);
 
 
 // const corsOptions = {
@@ -41,7 +42,6 @@ const corsOptions = {
 	},
 	credentials: true,
 };
-
 app.use(cors(corsOptions));
 
 if (!process.env.MONGO_URI) {
@@ -119,7 +119,11 @@ app.post('/refresh', async (req, res) => {
 
 		const user = await User.findOne(decoded.userId);
 		if (!user) {
-			res.clearCookie("refreshToken", { httpOnly: true, secure: true, sameSite: "Strict" });
+			res.clearCookie("refreshToken", {
+				httpOnly: true,
+				secure: process.env.NODE_ENV === 'production',
+				sameSite: "strict"
+			});
 			return res.status(401).json({ message: 'Пользователь не найден' });
 		};
 
@@ -135,7 +139,11 @@ app.post('/refresh', async (req, res) => {
 
 	} catch (error) {
 		console.error(`Недействительный токен: ${error}`);
-		res.clearCookie("refreshToken", { httpOnly: true, secure: true, sameSite: "strict" });
+		res.clearCookie("refreshToken", {
+			httpOnly: true,
+			secure: process.env.NODE_ENV === 'production',
+			sameSite: "strict"
+		});
 
 		if (error.name === 'TokenExpiredError') {
 			return res.status(401).json({ message: 'Ошибка аутентификации' });
@@ -195,13 +203,13 @@ app.post('/SignUp', async (req, res) => {
 		res
 			.cookie('accessToken', accessToken, {
 				httpOnly: true,
-				secure: true,
+				secure: process.env.NODE_ENV === 'production',
 				sameSite: "strict",
 				maxAge: 1 * 60 * 1000
 			})
 			.cookie('refreshToken', refreshToken, {
 				httpOnly: true,
-				secure: true,
+				secure: process.env.NODE_ENV === 'production',
 				sameSite: 'strict',
 				maxAge: 7 * 24 * 60 * 60 * 1000,
 			})
@@ -233,13 +241,13 @@ app.post('/SignIn', async (req, res) => {
 	res
 		.cookie('accessToken', accessToken, {
 			httpOnly: true,
-			secure: true,
+			secure: process.env.NODE_ENV === 'production',
 			sameSite: 'strict',
 			maxAge: 1 * 60 * 1000,
 		})
 		.cookie('refreshToken', refreshToken, {
 			httpOnly: true,
-			secure: true,
+			secure: process.env.NODE_ENV === 'production',
 			sameSite: 'strict',
 			maxAge: 7 * 24 * 60 * 60 * 1000,
 		})
