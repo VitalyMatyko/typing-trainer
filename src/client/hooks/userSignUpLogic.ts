@@ -76,6 +76,9 @@ const userSignUpLogic = () => {
 				console.log(`❌ Не удалось отправить данные для регистрации, Пользователь уже существует`);
 			};
 			const data = await response.json();
+
+			console.log(`data: ${data}`)
+
 			if (data.redirect === '/') {
 				window.location.href = data.redirect;
 			};

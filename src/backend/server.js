@@ -27,6 +27,17 @@ app.set('trust proxy', 1);
 // };
 
 
+if (!process.env.MONGO_URI) {
+	console.error("❌ Отсутствует URI базы данных ❌");
+	process.exit(1);
+}
+
+if (!process.env.ACCESS_SECRET || !process.env.REFRESH_SECRET) {
+	console.error("❌ Отсутствует секретный ключ для токенов ❌");
+	process.exit(1);
+}
+
+
 const allowedOrigins = [
 	'http://localhost:5050',
 	'https://typing-trainer-client.onrender.com'
@@ -44,10 +55,7 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
-if (!process.env.MONGO_URI) {
-	console.error("❌ Отсутствует URI базы данных ❌");
-	process.exit(1);
-}
+
 
 mongoose
 	.connect(process.env.MONGO_URI)
@@ -83,10 +91,7 @@ const userSchema = new Schema({
 
 const User = mongoose.model('User', userSchema);
 
-if (!process.env.ACCESS_SECRET || !process.env.REFRESH_SECRET) {
-	console.error("❌ Отсутствует секретный ключ для токенов ❌");
-	process.exit(1);
-}
+
 
 // Token verification.
 const authMiddleware = (req, res, next) => {
@@ -200,17 +205,23 @@ app.post('/SignUp', async (req, res) => {
 		const accessToken = jwt.sign({ userId: newUser.user_id }, process.env.ACCESS_SECRET, { expiresIn: '1m' });
 		const refreshToken = jwt.sign({ userId: newUser.user_id }, process.env.REFRESH_SECRET, { expiresIn: '7d' });
 
+		console.log(`accessToken: ${accessToken}`);
+		console.log(`refreshToken: ${refreshToken}`);
+		console.log(`newUser: ${newUser}`);
+
 		res
 			.cookie('accessToken', accessToken, {
 				httpOnly: true,
 				secure: process.env.NODE_ENV === 'production',
-				sameSite: "strict",
+				// sameSite: "strict",
+				sameSite: 'None',
 				maxAge: 1 * 60 * 1000
 			})
 			.cookie('refreshToken', refreshToken, {
 				httpOnly: true,
 				secure: process.env.NODE_ENV === 'production',
-				sameSite: 'strict',
+				// sameSite: 'strict',
+				sameSite: 'None',
 				maxAge: 7 * 24 * 60 * 60 * 1000,
 			})
 			.json({ redirect: '/', accessToken });
@@ -242,13 +253,15 @@ app.post('/SignIn', async (req, res) => {
 		.cookie('accessToken', accessToken, {
 			httpOnly: true,
 			secure: process.env.NODE_ENV === 'production',
-			sameSite: 'strict',
+			// sameSite: 'strict',
+			sameSite: 'None',
 			maxAge: 1 * 60 * 1000,
 		})
 		.cookie('refreshToken', refreshToken, {
 			httpOnly: true,
 			secure: process.env.NODE_ENV === 'production',
-			sameSite: 'strict',
+			// sameSite: 'strict',
+			sameSite: 'None',
 			maxAge: 7 * 24 * 60 * 60 * 1000,
 		})
 		.json({ redirect: '/', accessToken, message: 'Пользователь успешно вошёл' });
@@ -261,12 +274,14 @@ app.post('/SignOut', (req, res) => {
 			.clearCookie('accessToken', {
 				httpOnly: true,
 				secure: process.env.NODE_ENV === 'production',
-				sameSite: 'strict',
+				// sameSite: 'strict',
+				sameSite: 'None',
 			})
 			.clearCookie("refreshToken", {
 				httpOnly: true,
 				secure: process.env.NODE_ENV === 'production',
-				sameSite: 'strict'
+				// sameSite: 'strict',
+				sameSite: 'None',
 			});
 		return res.status(200).json({ redirect: '/', message: `✔️ Вы успешно вышли из аккаунта ✔️` });
 	} catch (error) {
