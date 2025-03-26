@@ -10,7 +10,7 @@ const API_URL = import.meta.env.MODE === 'production'
 
 export const refreshAccessToken = async () => {
 	try {
-		const res = await fetch(`http://${API_URL}/refresh`, {
+		const res = await fetch(`${API_URL}/refresh`, {
 			method: 'POST',
 			credentials: 'include',
 		});

@@ -18,12 +18,30 @@ app.use(express.static('public'));
 const PORT = process.env.PORT || 5000;
 
 
+// const corsOptions = {
+// 	origin: process.env.NODE_ENV === 'production'
+// 		? 'https://typing-trainer-client.onrender.com'  // Продакшн-URL
+// 		: 'http://localhost:5050',  // URL для разработки
+// 	credentials: true,
+// };
+
+
+const allowedOrigins = [
+	'http://localhost:5050',
+	'https://typing-trainer-client.onrender.com'
+];
+
 const corsOptions = {
-	origin: process.env.NODE_ENV === 'production'
-		? 'https://typing-trainer-client.onrender.com'  // Продакшн-URL
-		: 'http://localhost:5050',  // URL для разработки
+	origin: (origin, callback) => {
+		if (!origin || allowedOrigins.includes(origin)) {
+			callback(null, true);
+		} else {
+			callback(new Error('Not allowed by CORS'));
+		};
+	},
 	credentials: true,
 };
+
 app.use(cors(corsOptions));
 
 if (!process.env.MONGO_URI) {
