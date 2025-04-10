@@ -16,8 +16,9 @@ export default defineConfig({
 			],
 		}
 	},
-	plugins: [react(), svgr()],
-	base: '/TypingTrainer',
+	// base: '/TypingTrainer', // Deploy render
+	base: '/typing-trainer',
+	// base: process.env.NODE_ENV === 'production' ? '/typing-trainer' : '/',
 	server: {
 		host: '0.0.0.0',
 		port: process.env.PORT || 5050,
@@ -27,6 +28,7 @@ export default defineConfig({
 	},
 	preview: {
 		port: process.env.PORT || 5050,
-		allowedHosts: ['typing-trainer-client.onrender.com', 'localhost']
+		allowedHosts: ['typing-trainer-client.onrender.com', 'localhost', 'vitalymatyko.github.io']
 	},
+	plugins: [react(), svgr()],
 });
