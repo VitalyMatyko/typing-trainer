@@ -8,6 +8,7 @@ import path from "path";
 // https://vite.dev/config/
 export default defineConfig({
 	root: './',
+	base: '/typing-trainer',
 	build: {
 		outDir: './dist',
 		rollupOptions: {
@@ -16,9 +17,6 @@ export default defineConfig({
 			],
 		}
 	},
-	// base: '/TypingTrainer', // Deploy render
-	base: '/typing-trainer',
-	// base: process.env.NODE_ENV === 'production' ? '/typing-trainer' : '/',
 	server: {
 		host: '0.0.0.0',
 		port: process.env.PORT || 5050,
@@ -28,7 +26,7 @@ export default defineConfig({
 	},
 	preview: {
 		port: process.env.PORT || 5050,
-		allowedHosts: ['typing-trainer-client.onrender.com', 'localhost', 'vitalymatyko.github.io']
+		allowedHosts: ['typing-trainer-client.onrender.com', 'localhost']
 	},
 	plugins: [react(), svgr()],
 });

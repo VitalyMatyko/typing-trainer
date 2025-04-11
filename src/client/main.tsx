@@ -10,7 +10,6 @@ import { BrowserRouter } from 'react-router-dom';
 const rootElement = document.getElementById('root');
 if (rootElement) {
 	createRoot(rootElement).render(
-		// basename="/TypingTrainer" for deploy of render
 		<StrictMode>
 			<BrowserRouter basename="/typing-trainer">
 				<App />

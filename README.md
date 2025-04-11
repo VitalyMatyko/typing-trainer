@@ -60,6 +60,10 @@
     🎉 This project is licensed under the MIT license.
     🎉 Feel free to use and modify it!
 
-## 👨‍💻 Author: VitalyMatyko <br>
+## 🚀 Typing Trainer [Demo Render](https://typing-trainer-client.onrender.com)
 
-## 📮 Contacts: [GitHub](https://github.com/VitalyMatyko)
+## 🚀 Typing Trainer [Demo GitHub](vitalymatyko.github.io/typing-trainer/)
+
+## 🚀 Typing Trainer [Source Code](https://github.com/VitalyMatyko/typing-trainer)
+
+## 👨‍💻 Author: [GitHub](https://github.com/VitalyMatyko)
