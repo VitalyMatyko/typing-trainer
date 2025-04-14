@@ -1,5 +1,4 @@
 {
-	"$schema": "./tsconfig-schema.json",
 	"name": "typing-trainer",
 	"private": true,
 	"version": "0.0.0",
@@ -11,8 +10,7 @@
 		"lint": "eslint .",
 		"preview": "npm run build && vite preview",
 		"server": "node src/backend/server.js",
-		"build:git": "vite build --outDir git && touch git/.nojekyll",
-		"github": "npm run build:git && gh-pages -d git"
+		"github": "npm run build && gh-pages -d dist"
 	},
 	"dependencies": {
 		"@fortawesome/free-brands-svg-icons": "^6.7.2",

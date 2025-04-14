@@ -1,7 +1,5 @@
 # ⚡ **Typing Trainer** 🚀
 
-## [Typing Trainer](https://typing-trainer-client.onrender.com) : Click, to see this application.
-
 ## 📌 Description
 
     🔥  Typing Trainer is an interactive React app,
@@ -62,7 +60,7 @@
 
 ## 🚀 Typing Trainer [Demo Render](https://typing-trainer-client.onrender.com)
 
-## 🚀 Typing Trainer [Demo GitHub](vitalymatyko.github.io/typing-trainer/)
+## 🚀 Typing Trainer [Demo GitHub](https://vitalymatyko.github.io/typing-trainer/)
 
 ## 🚀 Typing Trainer [Source Code](https://github.com/VitalyMatyko/typing-trainer)
 
